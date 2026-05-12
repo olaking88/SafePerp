@@ -1,0 +1,17 @@
+[package]
+name = "encrypted-ixs"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+
+[features]
+no-entrypoint = []
+default = []
+
+[dependencies]
+blake3 = "=1.8.2"
+
+[build-dependencies]
+arcis = { version = "=0.9.7" }

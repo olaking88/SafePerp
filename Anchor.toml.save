@@ -1,0 +1,20 @@
+[features]
+seeds = false
+[programs.localnet]
+arcium_perp = "YOUR_PROGRAM_ID"
+
+[provider]
+cluster = "devnet"
+wallet = "~/.config/solana/id.json"
+
+[scripts]
+test = "anchor test"sk
+[registry]
+url = "https://api.apr.dev"
+
+[provider]
+cluster = "devnet"
+wallet = "~/.config/solana/devnet.json"
+
+[scripts]
+test = "yarn run ts-mocha -p ./tscon

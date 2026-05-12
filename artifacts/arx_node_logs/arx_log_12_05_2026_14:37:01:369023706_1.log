@@ -1,0 +1,12 @@
+2026-05-12T14:37:01.376230Z  WARN arx::utils: arx/src/utils.rs:254: Attempt 1/5: Solana network error: Failed to check cluster status: error sending request for url (http://host.docker.internal:8899/)
+2026-05-12T14:37:01.376601Z DEBUG arx::utils: arx/src/utils.rs:254: Sleeping for 1s before retry attempt 2
+2026-05-12T14:37:02.379889Z  WARN arx::utils: arx/src/utils.rs:254: Attempt 2/5: Solana network error: Failed to check cluster status: error sending request for url (http://host.docker.internal:8899/)
+2026-05-12T14:37:02.380004Z DEBUG arx::utils: arx/src/utils.rs:254: Sleeping for 2s before retry attempt 3
+2026-05-12T14:37:04.383010Z  WARN arx::utils: arx/src/utils.rs:254: Attempt 3/5: Solana network error: Failed to check cluster status: error sending request for url (http://host.docker.internal:8899/)
+2026-05-12T14:37:04.383134Z DEBUG arx::utils: arx/src/utils.rs:254: Sleeping for 4s before retry attempt 4
+2026-05-12T14:37:08.385359Z  WARN arx::utils: arx/src/utils.rs:254: Attempt 4/5: Solana network error: Failed to check cluster status: error sending request for url (http://host.docker.internal:8899/)
+2026-05-12T14:37:08.385544Z DEBUG arx::utils: arx/src/utils.rs:254: Sleeping for 8s before retry attempt 5
+2026-05-12T14:37:16.388823Z  WARN arx::utils: arx/src/utils.rs:254: Attempt 5/5: Solana network error: Failed to check cluster status: error sending request for url (http://host.docker.internal:8899/)
+2026-05-12T14:37:16.389034Z ERROR arx: arx/src/main.rs:76: PANIC DETECTED: panicked at arx/src/main.rs:89:10:
+Solana cluster is not up and running: Solana("Failed to check cluster status: error sending request for url (http://host.docker.internal:8899/)")
+2026-05-12T14:37:16.389337Z ERROR arx: arx/src/main.rs:78: PANIC LOCATION: arx/src/main.rs:89:10
