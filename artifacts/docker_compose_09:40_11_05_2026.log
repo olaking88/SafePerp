@@ -1,9 +1,0 @@
-[stderr]  Container artifacts-arx-node-0-1  Creating
-[stderr]  Container artifacts-arx-node-1-1  Creating
-[stderr]  Container artifacts-arcium-trusted-dealer-1  Creating
-[stderr]  Container artifacts-arcium-trusted-dealer-1  Created
-[stderr]  Container artifacts-arx-node-1-1  Created
-[stderr]  Container artifacts-arx-node-0-1  Created
-[stdout] Attaching to arcium-trusted-dealer-1, arx-node-0-1, arx-node-1-1
-[stderr] Gracefully stopping... (press Ctrl+C again to force)
-[stderr] error during connect: Get "http://%2Fvar%2Frun%2Fdocker.sock/v1.45/containers/fabc4f39f94c66a41eedab24567fd105e476a5e3b1fdf963b8c59e257ed0211b/json": read unix @->/run/docker.sock: read: connection reset by peer

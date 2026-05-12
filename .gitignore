@@ -5,3 +5,11 @@ target
 node_modules
 test-ledger
 .yarn
+artifacts/
+
+target/
+node_modules/
+dist/
+build/
+*.log
+
