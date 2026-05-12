@@ -5,3 +5,5 @@ test-ledger/
 *.keypair
 node_modules/
 .env
+solana-release-x86_64-unknown-linux-gnu.tar.bz2
+*.tar.bz2
