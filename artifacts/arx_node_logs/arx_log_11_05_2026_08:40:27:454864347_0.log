@@ -1,0 +1,671 @@
+2026-05-11T08:40:27.489344Z  WARN arx::coordinator: arx/src/coordinator.rs:148: On-chain IP 172.20.0.100 is not public
+2026-05-11T08:40:27.498735Z  INFO arx::metrics: arx/src/metrics.rs:534: Node metrics initialized: version=0.9.7, cluster=0, node=0
+2026-05-11T08:40:27.498774Z  INFO arx::coordinator: arx/src/coordinator.rs:166: node=0 peer_number=0 ip=172.20.0.100 peer_id=9805d9
+2026-05-11T08:40:27.498784Z  INFO arx::coordinator: arx/src/coordinator.rs:173: peer ip=172.20.0.101 peer_id=5941b9
+2026-05-11T08:40:27.498791Z  INFO arx::coordinator: arx/src/coordinator.rs:177: td ip=172.20.0.99 peer_id=1dfef5
+2026-05-11T08:40:27.498797Z  INFO arx::coordinator: arx/src/coordinator.rs:186: Initializing network router on 0.0.0.0:8001
+2026-05-11T08:40:27.504134Z  INFO arx::coordinator: arx/src/coordinator.rs:188: Network router initialized, connecting to peers and trusted dealer
+2026-05-11T08:40:27.504162Z DEBUG arx::units::online_phase_unit::router: arx/src/units/online_phase_unit/router.rs:53: Connecting to peer 5941b9 at 172.20.0.101:8001
+2026-05-11T08:40:27.504255Z DEBUG network::router::network_router: /home/runner/.cargo/git/checkouts/async-mpc-1dbbf554a14e7a32/3a609ae/network/src/router/network_router.rs:86: Handling connection request to peer 5941b9    
+2026-05-11T08:40:27.504285Z DEBUG network::router::state::connection_handlers: /home/runner/.cargo/git/checkouts/async-mpc-1dbbf554a14e7a32/3a609ae/network/src/router/state/connection_handlers.rs:44: Handling internal connection request: ConnectionRequest { expected_peer_id: 5941b9, peer_addr: 172.20.0.101:8001, response_sender: Sender { inner: Some(Inner { state: State { is_complete: false, is_closed: false, is_rx_task_set: true, is_tx_task_set: false } }) } }    
+2026-05-11T08:40:27.504297Z DEBUG network::router::state::connection_handlers: /home/runner/.cargo/git/checkouts/async-mpc-1dbbf554a14e7a32/3a609ae/network/src/router/state/connection_handlers.rs:65: Connection not established yet: 172.20.0.101:8001    
+2026-05-11T08:40:27.504302Z DEBUG network::router::state::connection_handlers: /home/runner/.cargo/git/checkouts/async-mpc-1dbbf554a14e7a32/3a609ae/network/src/router/state/connection_handlers.rs:101: Connecting to peer: 172.20.0.101:8001    
+2026-05-11T08:40:27.509912Z DEBUG network::router::state::connection_handlers: /home/runner/.cargo/git/checkouts/async-mpc-1dbbf554a14e7a32/3a609ae/network/src/router/state/connection_handlers.rs:129: Connecting and checking ID of peer: 172.20.0.101:8001    
+2026-05-11T08:40:27.509984Z DEBUG network::router::state::connection_handlers: /home/runner/.cargo/git/checkouts/async-mpc-1dbbf554a14e7a32/3a609ae/network/src/router/state/connection_handlers.rs:83: Established connection to peer: 172.20.0.101:8001    
+2026-05-11T08:40:27.510001Z DEBUG network::router::network_router: /home/runner/.cargo/git/checkouts/async-mpc-1dbbf554a14e7a32/3a609ae/network/src/router/network_router.rs:92: Connection request to peer 5941b9 handled    
+2026-05-11T08:40:27.516007Z DEBUG network::router::state::connection_handlers: /home/runner/.cargo/git/checkouts/async-mpc-1dbbf554a14e7a32/3a609ae/network/src/router/state/connection_handlers.rs:302: Checking connection liveness to peer: 172.20.0.101:8001    
+2026-05-11T08:40:27.526144Z DEBUG network::router::state::connection_handlers: /home/runner/.cargo/git/checkouts/async-mpc-1dbbf554a14e7a32/3a609ae/network/src/router/state/connection_handlers.rs:172: Outcome of connection to peer 172.20.0.101:8001 sent.    
+2026-05-11T08:40:27.526209Z DEBUG network::router::state::connection_handlers: /home/runner/.cargo/git/checkouts/async-mpc-1dbbf554a14e7a32/3a609ae/network/src/router/state/connection_handlers.rs:192: Handling established connection to peer: 172.20.0.101:8001    
+2026-05-11T08:40:27.526468Z  INFO network::router::state::substream_handlers: /home/runner/.cargo/git/checkouts/async-mpc-1dbbf554a14e7a32/3a609ae/network/src/router/state/substream_handlers.rs:260: Listening to substream requests from address 172.20.0.101:8001.    
+2026-05-11T08:40:27.526621Z DEBUG arx::units::online_phase_unit::router: arx/src/units/online_phase_unit/router.rs:58: Successfully connected to peer 5941b9 at 172.20.0.101:8001
+2026-05-11T08:40:27.526671Z  INFO arx::coordinator: arx/src/coordinator.rs:201: Connected to peers
+2026-05-11T08:40:27.526682Z DEBUG arx::units::online_phase_unit::router: arx/src/units/online_phase_unit/router.rs:53: Connecting to peer 1dfef5 at 172.20.0.99:8012
+2026-05-11T08:40:27.527084Z DEBUG network::router::network_router: /home/runner/.cargo/git/checkouts/async-mpc-1dbbf554a14e7a32/3a609ae/network/src/router/network_router.rs:86: Handling connection request to peer 1dfef5    
+2026-05-11T08:40:27.527103Z DEBUG network::router::state::connection_handlers: /home/runner/.cargo/git/checkouts/async-mpc-1dbbf554a14e7a32/3a609ae/network/src/router/state/connection_handlers.rs:44: Handling internal connection request: ConnectionRequest { expected_peer_id: 1dfef5, peer_addr: 172.20.0.99:8012, response_sender: Sender { inner: Some(Inner { state: State { is_complete: false, is_closed: false, is_rx_task_set: true, is_tx_task_set: false } }) } }    
+2026-05-11T08:40:27.527117Z DEBUG network::router::state::connection_handlers: /home/runner/.cargo/git/checkouts/async-mpc-1dbbf554a14e7a32/3a609ae/network/src/router/state/connection_handlers.rs:65: Connection not established yet: 172.20.0.99:8012    
+2026-05-11T08:40:27.527125Z DEBUG network::router::state::connection_handlers: /home/runner/.cargo/git/checkouts/async-mpc-1dbbf554a14e7a32/3a609ae/network/src/router/state/connection_handlers.rs:101: Connecting to peer: 172.20.0.99:8012    
+2026-05-11T08:40:27.527730Z DEBUG network::router::state::connection_handlers: /home/runner/.cargo/git/checkouts/async-mpc-1dbbf554a14e7a32/3a609ae/network/src/router/state/connection_handlers.rs:129: Connecting and checking ID of peer: 172.20.0.99:8012    
+2026-05-11T08:40:27.527847Z DEBUG network::router::state::connection_handlers: /home/runner/.cargo/git/checkouts/async-mpc-1dbbf554a14e7a32/3a609ae/network/src/router/state/connection_handlers.rs:83: Established connection to peer: 172.20.0.99:8012    
+2026-05-11T08:40:27.527862Z DEBUG network::router::network_router: /home/runner/.cargo/git/checkouts/async-mpc-1dbbf554a14e7a32/3a609ae/network/src/router/network_router.rs:92: Connection request to peer 1dfef5 handled    
+2026-05-11T08:40:27.530454Z DEBUG network::router::state::connection_handlers: /home/runner/.cargo/git/checkouts/async-mpc-1dbbf554a14e7a32/3a609ae/network/src/router/state/connection_handlers.rs:302: Checking connection liveness to peer: 172.20.0.99:8012    
+2026-05-11T08:40:27.532297Z DEBUG network::router::state::connection_handlers: /home/runner/.cargo/git/checkouts/async-mpc-1dbbf554a14e7a32/3a609ae/network/src/router/state/connection_handlers.rs:172: Outcome of connection to peer 172.20.0.99:8012 sent.    
+2026-05-11T08:40:27.532322Z DEBUG network::router::state::connection_handlers: /home/runner/.cargo/git/checkouts/async-mpc-1dbbf554a14e7a32/3a609ae/network/src/router/state/connection_handlers.rs:192: Handling established connection to peer: 172.20.0.99:8012    
+2026-05-11T08:40:27.532349Z  INFO network::router::state::substream_handlers: /home/runner/.cargo/git/checkouts/async-mpc-1dbbf554a14e7a32/3a609ae/network/src/router/state/substream_handlers.rs:260: Listening to substream requests from address 172.20.0.99:8012.    
+2026-05-11T08:40:27.532459Z DEBUG arx::units::online_phase_unit::router: arx/src/units/online_phase_unit/router.rs:58: Successfully connected to peer 1dfef5 at 172.20.0.99:8012
+2026-05-11T08:40:27.532498Z  INFO arx::coordinator: arx/src/coordinator.rs:212: Connected to trusted dealer
+2026-05-11T08:40:27.534499Z DEBUG arx::coordinator: arx/src/coordinator.rs:348: TD readiness check failed: Connection refused (os error 111)
+2026-05-11T08:40:27.534733Z DEBUG arx::coordinator: arx/src/coordinator.rs:351: TD registration not ready, retrying (1/300)
+2026-05-11T08:40:30.536934Z DEBUG arx::coordinator: arx/src/coordinator.rs:328: Trusted dealer registration port is ready!
+2026-05-11T08:40:30.537099Z  INFO arx::coordinator: arx/src/coordinator.rs:218: Trusted dealer registration port is ready
+2026-05-11T08:40:30.537951Z DEBUG arx::units::online_phase_unit::key_material: arx/src/units/online_phase_unit/key_material.rs:200: Loading key material from path /usr/arx-node/private-shares and /usr/arx-node/public-inputs
+2026-05-11T08:40:30.545437Z DEBUG arx::units::online_phase_unit::key_material: arx/src/units/online_phase_unit/key_material.rs:214: Loaded key material for MXE: BPBSsUSFQYGxvzmAtToS7zqZYVfs1Hutkt7uZayJTq8W
+2026-05-11T08:40:30.545583Z  INFO arx: arx/src/main.rs:140: Starting metrics server
+2026-05-11T08:40:30.545598Z  INFO arx: arx/src/main.rs:145: Starting ARX coordinator
+2026-05-11T08:40:30.545642Z  INFO arx::units::cache_unit: arx/src/units/cache_unit.rs:100: Cache unit started
+2026-05-11T08:40:30.545676Z  INFO arx::units::computation_transaction_unit: arx/src/units/computation_transaction_unit.rs:138: Computation transaction unit started
+2026-05-11T08:40:30.545690Z  INFO arx::units::execpool_unit: arx/src/units/execpool_unit.rs:61: Execpool unit started
+2026-05-11T08:40:30.545772Z  INFO arx::units::circuit_unit: arx/src/units/circuit_unit.rs:142: Circuit unit started
+2026-05-11T08:40:30.545809Z  INFO arx::units::mempool_unit: arx/src/units/mempool_unit.rs:59: Mempool unit started
+2026-05-11T08:40:30.545814Z  INFO arx::units::computation_unit: arx/src/units/computation_unit.rs:104: Inputs unit started
+2026-05-11T08:40:30.545864Z  INFO arx::units::node_transaction_unit: arx/src/units/node_transaction_unit.rs:65: Node transaction unit started
+2026-05-11T08:40:30.545883Z  INFO arx::units::node_transaction_unit: arx/src/units/node_transaction_unit.rs:67: Activating node
+2026-05-11T08:40:30.545898Z  INFO arx::units::online_phase_unit: arx/src/units/online_phase_unit.rs:137: Online phase unit started
+2026-05-11T08:40:30.545928Z  INFO arx::units::state_unit: arx/src/units/state_unit.rs:112: State unit started
+2026-05-11T08:40:30.546000Z  INFO arx::program: arx/src/program.rs:302: Pub/sub client started (ExecpoolWrapper)
+2026-05-11T08:40:30.546101Z  INFO arx::program: arx/src/program.rs:302: Pub/sub client started (MempoolWrapper)
+2026-05-11T08:40:30.546134Z  INFO arx::coordinator: arx/src/coordinator.rs:364: Coordinator started
+2026-05-11T08:40:30.550355Z  INFO arx::metrics: arx/src/metrics.rs:322: Metrics server listening on http://0.0.0.0:9091/metrics
+2026-05-11T08:40:30.546011Z  INFO arx::units::bls_unit: arx/src/units/bls_unit.rs:108: BLS unit started
+2026-05-11T08:40:30.552076Z DEBUG arx::program: arx/src/program.rs:392: Received account subscription update (MempoolWrapper)
+2026-05-11T08:40:30.552099Z  INFO arx::program: arx/src/program.rs:396: Subscribing to account 9rUSnh5VrMtRUrJrgAUwcyWvL9NYkscAsDFS5RjPW6Da (MempoolWrapper)
+2026-05-11T08:40:30.552223Z DEBUG arx::program: arx/src/program.rs:392: Received account subscription update (ExecpoolWrapper)
+2026-05-11T08:40:30.552250Z  INFO arx::program: arx/src/program.rs:396: Subscribing to account 9EDLm5KDKc1Pf8m587kdxPMvQBNETNahcCfHLNcQ1M8W (ExecpoolWrapper)
+2026-05-11T08:40:30.593168Z  INFO arx::program: arx/src/program.rs:409: Fetching initial state for account 9rUSnh5VrMtRUrJrgAUwcyWvL9NYkscAsDFS5RjPW6Da (MempoolWrapper)
+2026-05-11T08:40:30.599866Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:92: Received mempool update for account
+2026-05-11T08:40:30.600013Z  INFO arx::program: arx/src/program.rs:409: Fetching initial state for account 9EDLm5KDKc1Pf8m587kdxPMvQBNETNahcCfHLNcQ1M8W (ExecpoolWrapper)
+2026-05-11T08:40:30.602167Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:95: Received execpool update with 1 computations
+2026-05-11T08:40:30.602736Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:122: Mempool contains the same computations, skipping update
+2026-05-11T08:40:31.061487Z  INFO arx::units::node_transaction_unit: arx/src/units/node_transaction_unit.rs:70: Node activated
+2026-05-11T08:40:31.061570Z  INFO arx::coordinator: arx/src/coordinator.rs:396: Node activated, coordinator running
+2026-05-11T08:40:31.061619Z DEBUG arx::coordinator: arx/src/coordinator.rs:696: Coordinator received execpool unit Computation offset: 16886091867726627738 (index: 0, slot: 10)
+2026-05-11T08:40:31.061701Z DEBUG arx::units::state_unit: arx/src/units/state_unit.rs:285: Processing execpool update
+2026-05-11T08:40:31.061727Z DEBUG arx::units::state_unit: arx/src/units/state_unit.rs:322: Prefetching and executing computation: Computation offset: 16886091867726627738 (index: 0, slot: 10)
+2026-05-11T08:40:31.061796Z DEBUG arx::coordinator: arx/src/coordinator.rs:845: Coordinator received state unit message: prefetch computation: Computation offset: 16886091867726627738
+2026-05-11T08:40:31.061809Z DEBUG arx::coordinator: arx/src/coordinator.rs:855: Coordinator received state unit message: execute computation: Computation offset: 16886091867726627738 (index: 0, slot: 10)
+2026-05-11T08:40:31.061827Z DEBUG arx::units::cache_unit: arx/src/units/cache_unit.rs:193: Processing queued computation: Computation offset: 16886091867726627738
+2026-05-11T08:40:31.061848Z DEBUG arx::units::cache_unit: arx/src/units/cache_unit.rs:206: Processing set index for computation Computation offset: 16886091867726627738: 0
+2026-05-11T08:40:31.061857Z DEBUG arx::units::cache_unit: arx/src/units/cache_unit.rs:169: Updating execpool indexes: [0]
+2026-05-11T08:40:31.061862Z DEBUG arx::units::cache_unit: arx/src/units/cache_unit.rs:173: Filtered execpool indexes: [0]
+2026-05-11T08:40:31.061867Z DEBUG arx::units::cache_unit: arx/src/units/cache_unit.rs:375: Executing pending computations in order
+2026-05-11T08:40:31.061872Z DEBUG arx::units::cache_unit: arx/src/units/cache_unit.rs:393: Finished executing pending computations
+2026-05-11T08:40:31.063584Z DEBUG arx::coordinator: arx/src/coordinator.rs:625: Coordinator prefetched computation Computation offset 16886091867726627738 (MxeKeygen)
+2026-05-11T08:40:31.063660Z DEBUG arx::coordinator: arx/src/coordinator.rs:642: Coordinator fetched computation Computation offset 16886091867726627738 (MxeKeygen) inputs
+2026-05-11T08:40:31.063679Z DEBUG arx::units::cache_unit: arx/src/units/cache_unit.rs:218: Processing fetched Computation offset 16886091867726627738 (MxeKeygen)
+2026-05-11T08:40:31.063718Z DEBUG arx::units::cache_unit: arx/src/units/cache_unit.rs:320: Processing fetched inputs: Computation offset 16886091867726627738 (MxeKeygen)
+2026-05-11T08:40:31.063868Z DEBUG arx::units::circuit_unit: arx/src/units/circuit_unit.rs:241: Processing computation definition: A9RsgWfNkKKJ8Lw9zUUxnHNjEZzMGCGvFJEo2JXPMaMp
+2026-05-11T08:40:31.064775Z DEBUG arx::units::circuit_unit: arx/src/units/circuit_unit.rs:410: Fetching local circuit data from: /usr/arx-node/circuits/mxe_keygen/circuit.arcis
+2026-05-11T08:40:31.390616Z DEBUG arx::coordinator: arx/src/coordinator.rs:522: Coordinator received circuit info: CircuitInfo A9RsgWfNkKKJ8Lw9zUUxnHNjEZzMGCGvFJEo2JXPMaMp
+2026-05-11T08:40:31.390664Z DEBUG arx::units::cache_unit: arx/src/units/cache_unit.rs:245: Processing fetched circuit: CircuitInfo A9RsgWfNkKKJ8Lw9zUUxnHNjEZzMGCGvFJEo2JXPMaMp
+2026-05-11T08:40:31.390674Z DEBUG arx::units::cache_unit: arx/src/units/cache_unit.rs:263: Computation ready for execution: Computation offset 16886091867726627738 with computation definition A9RsgWfNkKKJ8Lw9zUUxnHNjEZzMGCGvFJEo2JXPMaMp (0 -> 0) (index: 0)
+2026-05-11T08:40:31.390695Z DEBUG arx::units::cache_unit: arx/src/units/cache_unit.rs:375: Executing pending computations in order
+2026-05-11T08:40:31.390701Z DEBUG arx::units::cache_unit: arx/src/units/cache_unit.rs:383: Executing computation Computation offset 16886091867726627738 with computation definition A9RsgWfNkKKJ8Lw9zUUxnHNjEZzMGCGvFJEo2JXPMaMp (0 -> 0) at index 0
+2026-05-11T08:40:31.390706Z DEBUG arx::units::cache_unit: arx/src/units/cache_unit.rs:393: Finished executing pending computations
+2026-05-11T08:40:31.390713Z DEBUG arx::coordinator: arx/src/coordinator.rs:462: Coordinator received cache unit prefetched computation: Computation offset: 16886091867726627738
+2026-05-11T08:40:31.390734Z DEBUG arx::coordinator: arx/src/coordinator.rs:472: Coordinator received cache unit execute computation: Computation offset 16886091867726627738 with computation definition A9RsgWfNkKKJ8Lw9zUUxnHNjEZzMGCGvFJEo2JXPMaMp (0 -> 0)
+2026-05-11T08:40:31.390769Z DEBUG arx::units::online_phase_unit: arx/src/units/online_phase_unit.rs:188: Connecting to peers (Computation offset 16886091867726627738 (MxeKeygen))
+2026-05-11T08:40:31.390779Z DEBUG arx::units::online_phase_unit::router: arx/src/units/online_phase_unit/router.rs:53: Connecting to peer 5941b9 at 172.20.0.101:8001
+2026-05-11T08:40:31.390801Z DEBUG network::router::network_router: /home/runner/.cargo/git/checkouts/async-mpc-1dbbf554a14e7a32/3a609ae/network/src/router/network_router.rs:86: Handling connection request to peer 5941b9    
+2026-05-11T08:40:31.390808Z DEBUG network::router::state::connection_handlers: /home/runner/.cargo/git/checkouts/async-mpc-1dbbf554a14e7a32/3a609ae/network/src/router/state/connection_handlers.rs:44: Handling internal connection request: ConnectionRequest { expected_peer_id: 5941b9, peer_addr: 172.20.0.101:8001, response_sender: Sender { inner: Some(Inner { state: State { is_complete: false, is_closed: false, is_rx_task_set: true, is_tx_task_set: false } }) } }    
+2026-05-11T08:40:31.390821Z DEBUG network::router::state::connection_handlers: /home/runner/.cargo/git/checkouts/async-mpc-1dbbf554a14e7a32/3a609ae/network/src/router/state/connection_handlers.rs:60: Connection already established: 172.20.0.101:8001    
+2026-05-11T08:40:31.390826Z DEBUG network::router::network_router: /home/runner/.cargo/git/checkouts/async-mpc-1dbbf554a14e7a32/3a609ae/network/src/router/network_router.rs:92: Connection request to peer 5941b9 handled    
+2026-05-11T08:40:31.390826Z DEBUG arx::units::state_unit: arx/src/units/state_unit.rs:345: Processing prefetched computation
+2026-05-11T08:40:31.390836Z DEBUG arx::units::online_phase_unit::router: arx/src/units/online_phase_unit/router.rs:58: Successfully connected to peer 5941b9 at 172.20.0.101:8001
+2026-05-11T08:40:31.390850Z DEBUG arx::units::online_phase_unit: arx/src/units/online_phase_unit.rs:207: Connected to peers (Computation offset 16886091867726627738 (MxeKeygen))
+2026-05-11T08:40:31.390861Z  WARN arx::units::online_phase_unit: arx/src/units/online_phase_unit.rs:215: Running MXE keygen computation but key material already exist for MXE BPBSsUSFQYGxvzmAtToS7zqZYVfs1Hutkt7uZayJTq8W (Computation offset 16886091867726627738 (MxeKeygen))
+2026-05-11T08:40:31.390871Z DEBUG arx::units::online_phase_unit: arx/src/units/online_phase_unit.rs:303: No preprocessing bundler, creating one...
+2026-05-11T08:40:31.390883Z DEBUG arx::units::online_phase_unit::preprocessing_bundler: arx/src/units/online_phase_unit/preprocessing_bundler.rs:20: Attempting to connect to trusted dealer at 172.20.0.99:8012
+2026-05-11T08:40:31.390893Z DEBUG arx::units::online_phase_unit::router: arx/src/units/online_phase_unit/router.rs:53: Connecting to peer 1dfef5 at 172.20.0.99:8012
+2026-05-11T08:40:31.390988Z DEBUG network::router::network_router: /home/runner/.cargo/git/checkouts/async-mpc-1dbbf554a14e7a32/3a609ae/network/src/router/network_router.rs:86: Handling connection request to peer 1dfef5    
+2026-05-11T08:40:31.391008Z DEBUG network::router::state::connection_handlers: /home/runner/.cargo/git/checkouts/async-mpc-1dbbf554a14e7a32/3a609ae/network/src/router/state/connection_handlers.rs:44: Handling internal connection request: ConnectionRequest { expected_peer_id: 1dfef5, peer_addr: 172.20.0.99:8012, response_sender: Sender { inner: Some(Inner { state: State { is_complete: false, is_closed: false, is_rx_task_set: true, is_tx_task_set: false } }) } }    
+2026-05-11T08:40:31.391023Z DEBUG network::router::state::connection_handlers: /home/runner/.cargo/git/checkouts/async-mpc-1dbbf554a14e7a32/3a609ae/network/src/router/state/connection_handlers.rs:60: Connection already established: 172.20.0.99:8012    
+2026-05-11T08:40:31.391033Z DEBUG network::router::network_router: /home/runner/.cargo/git/checkouts/async-mpc-1dbbf554a14e7a32/3a609ae/network/src/router/network_router.rs:92: Connection request to peer 1dfef5 handled    
+2026-05-11T08:40:31.391045Z DEBUG arx::units::online_phase_unit::router: arx/src/units/online_phase_unit/router.rs:58: Successfully connected to peer 1dfef5 at 172.20.0.99:8012
+2026-05-11T08:40:31.391069Z DEBUG arx::units::online_phase_unit::preprocessing_bundler: arx/src/units/online_phase_unit/preprocessing_bundler.rs:36: Successfully connected to trusted dealer QUIC endpoint
+2026-05-11T08:40:31.392134Z DEBUG arx::units::online_phase_unit::preprocessing_bundler: arx/src/units/online_phase_unit/preprocessing_bundler.rs:46: Protocol 114278540768390112115541985195303305472 registered successfully
+2026-05-11T08:40:31.392150Z DEBUG arx::units::online_phase_unit::preprocessing_bundler: arx/src/units/online_phase_unit/preprocessing_bundler.rs:49: Creating dealer client bundler for protocol 114278540768390112115541985195303305472
+2026-05-11T08:40:31.392169Z DEBUG network::router::network_router: /home/runner/.cargo/git/checkouts/async-mpc-1dbbf554a14e7a32/3a609ae/network/src/router/network_router.rs:112: Opening substream for protocol (114278540768390112115541985195303305472, 0) with peer 1dfef5    
+2026-05-11T08:40:31.392256Z  INFO network::router::network_router: /home/runner/.cargo/git/checkouts/async-mpc-1dbbf554a14e7a32/3a609ae/network/src/router/network_router.rs:287: Opened substreams for protocol 114278540768390112115541985195303305472    
+2026-05-11T08:40:31.392310Z DEBUG network::router::network_router: /home/runner/.cargo/git/checkouts/async-mpc-1dbbf554a14e7a32/3a609ae/network/src/router/network_router.rs:112: Opening substream for protocol (114278540768390112115541985195303305473, 0) with peer 1dfef5    
+2026-05-11T08:40:31.392358Z  INFO network::router::network_router: /home/runner/.cargo/git/checkouts/async-mpc-1dbbf554a14e7a32/3a609ae/network/src/router/network_router.rs:287: Opened substreams for protocol 114278540768390112115541985195303305473    
+2026-05-11T08:40:31.392370Z DEBUG network::router::network_router: /home/runner/.cargo/git/checkouts/async-mpc-1dbbf554a14e7a32/3a609ae/network/src/router/network_router.rs:112: Opening substream for protocol (114278540768390112115541985195303305474, 0) with peer 1dfef5    
+2026-05-11T08:40:31.392852Z  INFO network::router::network_router: /home/runner/.cargo/git/checkouts/async-mpc-1dbbf554a14e7a32/3a609ae/network/src/router/network_router.rs:287: Opened substreams for protocol 114278540768390112115541985195303305474    
+2026-05-11T08:40:31.392890Z DEBUG network::router::network_router: /home/runner/.cargo/git/checkouts/async-mpc-1dbbf554a14e7a32/3a609ae/network/src/router/network_router.rs:112: Opening substream for protocol (114278540768390112115541985195303305475, 0) with peer 1dfef5    
+2026-05-11T08:40:31.392918Z  INFO network::router::network_router: /home/runner/.cargo/git/checkouts/async-mpc-1dbbf554a14e7a32/3a609ae/network/src/router/network_router.rs:287: Opened substreams for protocol 114278540768390112115541985195303305475    
+2026-05-11T08:40:31.392933Z DEBUG network::router::network_router: /home/runner/.cargo/git/checkouts/async-mpc-1dbbf554a14e7a32/3a609ae/network/src/router/network_router.rs:112: Opening substream for protocol (114278540768390112115541985195303305476, 0) with peer 1dfef5    
+2026-05-11T08:40:31.393169Z  INFO network::router::network_router: /home/runner/.cargo/git/checkouts/async-mpc-1dbbf554a14e7a32/3a609ae/network/src/router/network_router.rs:287: Opened substreams for protocol 114278540768390112115541985195303305476    
+2026-05-11T08:40:31.393202Z DEBUG network::router::network_router: /home/runner/.cargo/git/checkouts/async-mpc-1dbbf554a14e7a32/3a609ae/network/src/router/network_router.rs:112: Opening substream for protocol (114278540768390112115541985195303305477, 0) with peer 1dfef5    
+2026-05-11T08:40:31.393482Z  INFO network::router::network_router: /home/runner/.cargo/git/checkouts/async-mpc-1dbbf554a14e7a32/3a609ae/network/src/router/network_router.rs:287: Opened substreams for protocol 114278540768390112115541985195303305477    
+2026-05-11T08:40:31.393558Z DEBUG network::router::network_router: /home/runner/.cargo/git/checkouts/async-mpc-1dbbf554a14e7a32/3a609ae/network/src/router/network_router.rs:112: Opening substream for protocol (114278540768390112115541985195303305478, 0) with peer 1dfef5    
+2026-05-11T08:40:31.393658Z  INFO network::router::network_router: /home/runner/.cargo/git/checkouts/async-mpc-1dbbf554a14e7a32/3a609ae/network/src/router/network_router.rs:287: Opened substreams for protocol 114278540768390112115541985195303305478    
+2026-05-11T08:40:31.393683Z DEBUG network::router::network_router: /home/runner/.cargo/git/checkouts/async-mpc-1dbbf554a14e7a32/3a609ae/network/src/router/network_router.rs:112: Opening substream for protocol (114278540768390112115541985195303305479, 0) with peer 1dfef5    
+2026-05-11T08:40:31.393718Z  INFO network::router::network_router: /home/runner/.cargo/git/checkouts/async-mpc-1dbbf554a14e7a32/3a609ae/network/src/router/network_router.rs:287: Opened substreams for protocol 114278540768390112115541985195303305479    
+2026-05-11T08:40:31.393740Z DEBUG network::router::network_router: /home/runner/.cargo/git/checkouts/async-mpc-1dbbf554a14e7a32/3a609ae/network/src/router/network_router.rs:112: Opening substream for protocol (114278540768390112115541985195303305480, 0) with peer 1dfef5    
+2026-05-11T08:40:31.393974Z  INFO network::router::network_router: /home/runner/.cargo/git/checkouts/async-mpc-1dbbf554a14e7a32/3a609ae/network/src/router/network_router.rs:287: Opened substreams for protocol 114278540768390112115541985195303305480    
+2026-05-11T08:40:31.394019Z DEBUG network::router::network_router: /home/runner/.cargo/git/checkouts/async-mpc-1dbbf554a14e7a32/3a609ae/network/src/router/network_router.rs:112: Opening substream for protocol (114278540768390112115541985195303305481, 0) with peer 1dfef5    
+2026-05-11T08:40:31.394533Z  INFO network::router::network_router: /home/runner/.cargo/git/checkouts/async-mpc-1dbbf554a14e7a32/3a609ae/network/src/router/network_router.rs:287: Opened substreams for protocol 114278540768390112115541985195303305481    
+2026-05-11T08:40:31.394567Z DEBUG network::router::network_router: /home/runner/.cargo/git/checkouts/async-mpc-1dbbf554a14e7a32/3a609ae/network/src/router/network_router.rs:112: Opening substream for protocol (114278540768390112115541985195303305482, 0) with peer 1dfef5    
+2026-05-11T08:40:31.394628Z  INFO network::router::network_router: /home/runner/.cargo/git/checkouts/async-mpc-1dbbf554a14e7a32/3a609ae/network/src/router/network_router.rs:287: Opened substreams for protocol 114278540768390112115541985195303305482    
+2026-05-11T08:40:31.394699Z DEBUG network::router::network_router: /home/runner/.cargo/git/checkouts/async-mpc-1dbbf554a14e7a32/3a609ae/network/src/router/network_router.rs:112: Opening substream for protocol (114278540768390112115541985195303305483, 0) with peer 1dfef5    
+2026-05-11T08:40:31.395071Z  INFO network::router::network_router: /home/runner/.cargo/git/checkouts/async-mpc-1dbbf554a14e7a32/3a609ae/network/src/router/network_router.rs:287: Opened substreams for protocol 114278540768390112115541985195303305483    
+2026-05-11T08:40:31.395145Z DEBUG arx::units::online_phase_unit::preprocessing_bundler: arx/src/units/online_phase_unit/preprocessing_bundler.rs:58: Successfully created dealer client bundler
+2026-05-11T08:40:31.395167Z DEBUG network::router::network_router: /home/runner/.cargo/git/checkouts/async-mpc-1dbbf554a14e7a32/3a609ae/network/src/router/network_router.rs:112: Opening substream for protocol (16886091867726627738, 0) with peer 5941b9    
+2026-05-11T08:40:31.395188Z  INFO network::router::network_router: /home/runner/.cargo/git/checkouts/async-mpc-1dbbf554a14e7a32/3a609ae/network/src/router/network_router.rs:287: Opened substreams for protocol 16886091867726627738    
+2026-05-11T08:40:32.409012Z  INFO arx::units::online_phase_unit: arx/src/units/online_phase_unit.rs:364: Protocol built successfully (Computation offset 16886091867726627738 (MxeKeygen))
+2026-05-11T08:40:32.409503Z DEBUG arx::coordinator: arx/src/coordinator.rs:794: Coordinator received protocol built for computation: Computation offset: 16886091867726627738
+2026-05-11T08:40:32.409623Z DEBUG arx::units::state_unit: arx/src/units/state_unit.rs:141: Processing protocol built computation
+2026-05-11T08:40:32.409651Z  INFO arx::units::online_phase_unit: arx/src/units/online_phase_unit.rs:434: Processing Cerberus Computation offset 16886091867726627738 (MxeKeygen)
+2026-05-11T08:40:33.428866Z DEBUG arx::coordinator: arx/src/coordinator.rs:802: Coordinator received online unit output: Computation offset 16886091867726627738 (MxeKeygen) with unsigned success outputs of len 98
+2026-05-11T08:40:33.428911Z DEBUG arx::units::bls_unit: arx/src/units/bls_unit.rs:126: BLS unit received signature request: Computation offset 16886091867726627738 (MxeKeygen) with unsigned success outputs of len 98
+2026-05-11T08:40:33.428911Z  INFO network::labeled_interface::handlers: /home/runner/.cargo/git/checkouts/async-mpc-1dbbf554a14e7a32/3a609ae/network/src/labeled_interface/handlers.rs:91: Interface 9805d9 dropped.    
+2026-05-11T08:40:33.428925Z DEBUG arx::units::bls_unit: arx/src/units/bls_unit.rs:182: Message to sign for Computation offset 16886091867726627738, length: 171
+2026-05-11T08:40:33.429009Z DEBUG arx::units::online_phase_unit: arx/src/units/online_phase_unit.rs:157: Setting MXE key material for BPBSsUSFQYGxvzmAtToS7zqZYVfs1Hutkt7uZayJTq8W
+2026-05-11T08:40:33.429054Z  INFO network::labeled_interface::interface: /home/runner/.cargo/git/checkouts/async-mpc-1dbbf554a14e7a32/3a609ae/network/src/labeled_interface/interface.rs:450: Interface 9805d9 dropped.    
+2026-05-11T08:40:33.429095Z DEBUG arx::units::state_unit: arx/src/units/state_unit.rs:149: Processing outputted computation
+2026-05-11T08:40:33.429178Z  WARN arx::units::online_phase_unit: arx/src/units/online_phase_unit.rs:159: Existing MXE key material for BPBSsUSFQYGxvzmAtToS7zqZYVfs1Hutkt7uZayJTq8W were overwritten
+2026-05-11T08:40:33.429807Z  INFO network::labeled_interface::handlers: /home/runner/.cargo/git/checkouts/async-mpc-1dbbf554a14e7a32/3a609ae/network/src/labeled_interface/handlers.rs:53: Receiver channel from peer 0 to us (9805d9) closed.    
+2026-05-11T08:40:33.429901Z  INFO network::router::state::substream_handlers: /home/runner/.cargo/git/checkouts/async-mpc-1dbbf554a14e7a32/3a609ae/network/src/router/state/substream_handlers.rs:240: Removed protocol ID (16886091867726627738, 0) for peer 5941b9.    
+2026-05-11T08:40:33.439530Z DEBUG arx::units::bls_unit: arx/src/units/bls_unit.rs:238: Not ready to aggregate signatures for Computation offset 16886091867726627738, our signature will be stored but not aggregated
+2026-05-11T08:40:33.439635Z DEBUG arx::units::bls_unit: arx/src/units/bls_unit.rs:142: BLS unit accepted connection from 172.20.0.101:39394
+2026-05-11T08:40:33.439910Z DEBUG arx::units::bls_unit: arx/src/units/bls_unit.rs:157: BLS unit received incoming signature for Computation offset 16886091867726627738 from 172.20.0.101
+2026-05-11T08:40:33.440775Z DEBUG arx::units::bls_unit: arx/src/units/bls_unit.rs:462: Pushed signature to peer 172.20.0.101:8002
+2026-05-11T08:40:33.444097Z DEBUG arx::units::bls_unit: arx/src/units/bls_unit.rs:274: Stored signature for Computation offset 16886091867726627738 (1/1)
+2026-05-11T08:40:33.444584Z DEBUG arx::units::bls_unit: arx/src/units/bls_unit.rs:161: BLS unit processed incoming signature for Computation offset 16886091867726627738
+2026-05-11T08:40:33.444632Z DEBUG arx::coordinator: arx/src/coordinator.rs:420: Coordinator received bls unit output: Computation offset 16886091867726627738 (MxeKeygen) Signed computation output with data with unsigned success outputs of len 98 and sig [37, 174, 85, 84, 141, 198, 157, 188, 172, 16, 75, 7, 171, 47, 154, 3, 191, 116, 87, 58, 193, 252, 241, 85, 104, 161, 67, 92, 72, 225, 252, 126, 10, 37, 28, 211, 123, 191, 48, 97, 175, 111, 144, 153, 217, 114, 171, 188, 250, 90, 68, 25, 214, 53, 193, 150, 119, 253, 147, 207, 170, 174, 25, 213]
+2026-05-11T08:40:33.444882Z DEBUG arx::units::computation_transaction_unit: arx/src/units/computation_transaction_unit.rs:429: Processing callback for computation Computation offset 16886091867726627738 (MxeKeygen)
+2026-05-11T08:40:33.444935Z DEBUG arx::units::state_unit: arx/src/units/state_unit.rs:157: Processing signed computation
+2026-05-11T08:40:33.447779Z DEBUG arx::units::computation_transaction_unit::keygen: arx/src/units/computation_transaction_unit/keygen.rs:86: ElGamal pubkey validity proof verification passed
+2026-05-11T08:40:33.954098Z DEBUG arx::units::computation_transaction_unit::keygen: arx/src/units/computation_transaction_unit/keygen.rs:119: Sent set_mxe_keys tx for mxe BPBSsUSFQYGxvzmAtToS7zqZYVfs1Hutkt7uZayJTq8W with sig 3Cv1oXd1gFoEvfPi6TpMYh2hdWfRmwBdZKxB9PTqcsudLz5GmU7jHaQsFjmoXLmAXXAcjtrzwGh5FfHtb9Lteoy3
+2026-05-11T08:40:42.184713Z DEBUG arx::program: arx/src/program.rs:454: Received update for account 9EDLm5KDKc1Pf8m587kdxPMvQBNETNahcCfHLNcQ1M8W (ExecpoolWrapper)
+2026-05-11T08:40:42.185781Z DEBUG arx::program: arx/src/program.rs:454: Received update for account 9rUSnh5VrMtRUrJrgAUwcyWvL9NYkscAsDFS5RjPW6Da (MempoolWrapper)
+2026-05-11T08:40:42.252579Z DEBUG arx::program: arx/src/program.rs:332: Processing 1 latest updates for subscribed accounts (ExecpoolWrapper)
+2026-05-11T08:40:42.252725Z DEBUG arx::program: arx/src/program.rs:332: Processing 1 latest updates for subscribed accounts (MempoolWrapper)
+2026-05-11T08:40:42.252741Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:95: Received execpool update with 0 computations
+2026-05-11T08:40:42.252787Z DEBUG arx::units::state_unit: arx/src/units/state_unit.rs:285: Processing execpool update
+2026-05-11T08:40:42.252799Z DEBUG arx::units::state_unit: arx/src/units/state_unit.rs:300: Computation timings
+Computation offset: 16886091867726627738
+|-> prefetch    :       +0ms
+|-> prefetched  :     +329ms
+|-> execute     :       +0ms
+|-> protocol    :    +1347ms
+|-> output      :    +1019ms
+|-> signed      :      +15ms
+|-> executed    :    +8807ms
+|-> TOTAL       :    11517ms
+
+2026-05-11T08:40:42.252855Z DEBUG arx::units::cache_unit: arx/src/units/cache_unit.rs:169: Updating execpool indexes: []
+2026-05-11T08:40:42.252873Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:92: Received mempool update for account
+2026-05-11T08:40:42.252894Z DEBUG arx::units::cache_unit: arx/src/units/cache_unit.rs:173: Filtered execpool indexes: []
+2026-05-11T08:40:42.252911Z DEBUG arx::units::cache_unit: arx/src/units/cache_unit.rs:375: Executing pending computations in order
+2026-05-11T08:40:42.252921Z DEBUG arx::units::cache_unit: arx/src/units/cache_unit.rs:393: Finished executing pending computations
+2026-05-11T08:40:42.252946Z DEBUG arx::units::state_unit: arx/src/units/state_unit.rs:306: Removing computation from execpool: Computation offset: 16886091867726627738
+2026-05-11T08:40:42.253039Z DEBUG arx::coordinator: arx/src/coordinator.rs:875: Coordinator received state unit message: executed computation: Computation offset: 16886091867726627738
+2026-05-11T08:40:42.253069Z DEBUG arx::units::cache_unit: arx/src/units/cache_unit.rs:356: Processing executed computation: Computation offset: 16886091867726627738
+2026-05-11T08:40:42.253079Z  WARN arx::units::cache_unit: arx/src/units/cache_unit.rs:367: Computation info not found in cache: Computation offset: 16886091867726627738
+2026-05-11T08:40:42.254163Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:122: Mempool contains the same computations, skipping update
+2026-05-11T08:40:42.499504Z DEBUG arx::units::computation_transaction_unit: arx/src/units/computation_transaction_unit.rs:899: Versioned callback computation tx for mxe BPBSsUSFQYGxvzmAtToS7zqZYVfs1Hutkt7uZayJTq8W already sent
+2026-05-11T08:40:42.502448Z DEBUG arx::coordinator: arx/src/coordinator.rs:571: Coordinator received computation transaction unit callback computation: Computation offset: 16886091867726627738
+2026-05-11T08:40:42.502569Z DEBUG arx::units::state_unit: arx/src/units/state_unit.rs:361: Processing executed computation
+2026-05-11T08:40:42.502619Z DEBUG arx::units::cache_unit: arx/src/units/cache_unit.rs:356: Processing executed computation: Computation offset: 16886091867726627738
+2026-05-11T08:40:42.502629Z  WARN arx::units::cache_unit: arx/src/units/cache_unit.rs:367: Computation info not found in cache: Computation offset: 16886091867726627738
+2026-05-11T08:41:45.064097Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (MempoolWrapper)
+2026-05-11T08:41:45.064106Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (ExecpoolWrapper)
+2026-05-11T08:41:45.067934Z  WARN arx::program: arx/src/program.rs:369: No update for account 9EDLm5KDKc1Pf8m587kdxPMvQBNETNahcCfHLNcQ1M8W in 60s, re-fetching (ExecpoolWrapper)
+2026-05-11T08:41:45.068228Z  WARN arx::program: arx/src/program.rs:369: No update for account 9rUSnh5VrMtRUrJrgAUwcyWvL9NYkscAsDFS5RjPW6Da in 60s, re-fetching (MempoolWrapper)
+2026-05-11T08:41:45.071584Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:95: Received execpool update with 0 computations
+2026-05-11T08:41:45.071618Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:125: Execpool contains the same computations, skipping update
+2026-05-11T08:41:45.073501Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:92: Received mempool update for account
+2026-05-11T08:41:45.076104Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:122: Mempool contains the same computations, skipping update
+2026-05-11T08:42:48.014632Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (ExecpoolWrapper)
+2026-05-11T08:42:48.014715Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (MempoolWrapper)
+2026-05-11T08:42:48.018945Z  WARN arx::program: arx/src/program.rs:369: No update for account 9rUSnh5VrMtRUrJrgAUwcyWvL9NYkscAsDFS5RjPW6Da in 60s, re-fetching (MempoolWrapper)
+2026-05-11T08:42:48.021107Z  WARN arx::program: arx/src/program.rs:369: No update for account 9EDLm5KDKc1Pf8m587kdxPMvQBNETNahcCfHLNcQ1M8W in 60s, re-fetching (ExecpoolWrapper)
+2026-05-11T08:42:48.025727Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:92: Received mempool update for account
+2026-05-11T08:42:48.025925Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:122: Mempool contains the same computations, skipping update
+2026-05-11T08:42:48.026158Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:95: Received execpool update with 0 computations
+2026-05-11T08:42:48.026185Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:125: Execpool contains the same computations, skipping update
+2026-05-11T08:43:50.999062Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (ExecpoolWrapper)
+2026-05-11T08:43:50.999138Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (MempoolWrapper)
+2026-05-11T08:43:51.002750Z  WARN arx::program: arx/src/program.rs:369: No update for account 9EDLm5KDKc1Pf8m587kdxPMvQBNETNahcCfHLNcQ1M8W in 60s, re-fetching (ExecpoolWrapper)
+2026-05-11T08:43:51.004880Z  WARN arx::program: arx/src/program.rs:369: No update for account 9rUSnh5VrMtRUrJrgAUwcyWvL9NYkscAsDFS5RjPW6Da in 60s, re-fetching (MempoolWrapper)
+2026-05-11T08:43:51.008188Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:95: Received execpool update with 0 computations
+2026-05-11T08:43:51.008219Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:125: Execpool contains the same computations, skipping update
+2026-05-11T08:43:51.009608Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:92: Received mempool update for account
+2026-05-11T08:43:51.011657Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:122: Mempool contains the same computations, skipping update
+2026-05-11T08:44:52.533629Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (MempoolWrapper)
+2026-05-11T08:44:52.533724Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (ExecpoolWrapper)
+2026-05-11T08:44:52.541885Z  WARN arx::program: arx/src/program.rs:369: No update for account 9rUSnh5VrMtRUrJrgAUwcyWvL9NYkscAsDFS5RjPW6Da in 60s, re-fetching (MempoolWrapper)
+2026-05-11T08:44:52.542476Z  WARN arx::program: arx/src/program.rs:369: No update for account 9EDLm5KDKc1Pf8m587kdxPMvQBNETNahcCfHLNcQ1M8W in 60s, re-fetching (ExecpoolWrapper)
+2026-05-11T08:44:52.549838Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:92: Received mempool update for account
+2026-05-11T08:44:52.550658Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:95: Received execpool update with 0 computations
+2026-05-11T08:44:52.550687Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:125: Execpool contains the same computations, skipping update
+2026-05-11T08:44:52.553585Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:122: Mempool contains the same computations, skipping update
+2026-05-11T08:45:55.509704Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (ExecpoolWrapper)
+2026-05-11T08:45:55.509712Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (MempoolWrapper)
+2026-05-11T08:45:55.514980Z  WARN arx::program: arx/src/program.rs:369: No update for account 9rUSnh5VrMtRUrJrgAUwcyWvL9NYkscAsDFS5RjPW6Da in 60s, re-fetching (MempoolWrapper)
+2026-05-11T08:45:55.515490Z  WARN arx::program: arx/src/program.rs:369: No update for account 9EDLm5KDKc1Pf8m587kdxPMvQBNETNahcCfHLNcQ1M8W in 60s, re-fetching (ExecpoolWrapper)
+2026-05-11T08:45:55.523030Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:92: Received mempool update for account
+2026-05-11T08:45:55.523485Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:95: Received execpool update with 0 computations
+2026-05-11T08:45:55.523517Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:125: Execpool contains the same computations, skipping update
+2026-05-11T08:45:55.523841Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:122: Mempool contains the same computations, skipping update
+2026-05-11T08:46:58.501167Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (MempoolWrapper)
+2026-05-11T08:46:58.501345Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (ExecpoolWrapper)
+2026-05-11T08:46:58.506676Z  WARN arx::program: arx/src/program.rs:369: No update for account 9rUSnh5VrMtRUrJrgAUwcyWvL9NYkscAsDFS5RjPW6Da in 60s, re-fetching (MempoolWrapper)
+2026-05-11T08:46:58.507302Z  WARN arx::program: arx/src/program.rs:369: No update for account 9EDLm5KDKc1Pf8m587kdxPMvQBNETNahcCfHLNcQ1M8W in 60s, re-fetching (ExecpoolWrapper)
+2026-05-11T08:46:58.514279Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:92: Received mempool update for account
+2026-05-11T08:46:58.514379Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:122: Mempool contains the same computations, skipping update
+2026-05-11T08:46:58.514603Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:95: Received execpool update with 0 computations
+2026-05-11T08:46:58.514634Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:125: Execpool contains the same computations, skipping update
+2026-05-11T08:48:01.493983Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (ExecpoolWrapper)
+2026-05-11T08:48:01.494122Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (MempoolWrapper)
+2026-05-11T08:48:01.497124Z  WARN arx::program: arx/src/program.rs:369: No update for account 9rUSnh5VrMtRUrJrgAUwcyWvL9NYkscAsDFS5RjPW6Da in 60s, re-fetching (MempoolWrapper)
+2026-05-11T08:48:01.497430Z  WARN arx::program: arx/src/program.rs:369: No update for account 9EDLm5KDKc1Pf8m587kdxPMvQBNETNahcCfHLNcQ1M8W in 60s, re-fetching (ExecpoolWrapper)
+2026-05-11T08:48:01.503937Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:92: Received mempool update for account
+2026-05-11T08:48:01.504234Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:95: Received execpool update with 0 computations
+2026-05-11T08:48:01.504294Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:125: Execpool contains the same computations, skipping update
+2026-05-11T08:48:01.505813Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:122: Mempool contains the same computations, skipping update
+2026-05-11T08:49:01.594025Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (ExecpoolWrapper)
+2026-05-11T08:49:01.594145Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (MempoolWrapper)
+2026-05-11T08:49:01.596621Z  WARN arx::program: arx/src/program.rs:369: No update for account 9rUSnh5VrMtRUrJrgAUwcyWvL9NYkscAsDFS5RjPW6Da in 60s, re-fetching (MempoolWrapper)
+2026-05-11T08:49:01.596949Z  WARN arx::program: arx/src/program.rs:369: No update for account 9EDLm5KDKc1Pf8m587kdxPMvQBNETNahcCfHLNcQ1M8W in 60s, re-fetching (ExecpoolWrapper)
+2026-05-11T08:49:01.601487Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:92: Received mempool update for account
+2026-05-11T08:49:01.601651Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:122: Mempool contains the same computations, skipping update
+2026-05-11T08:49:01.601887Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:95: Received execpool update with 0 computations
+2026-05-11T08:49:01.601912Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:125: Execpool contains the same computations, skipping update
+2026-05-11T08:50:01.693391Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (MempoolWrapper)
+2026-05-11T08:50:01.693470Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (ExecpoolWrapper)
+2026-05-11T08:50:01.696048Z  WARN arx::program: arx/src/program.rs:369: No update for account 9EDLm5KDKc1Pf8m587kdxPMvQBNETNahcCfHLNcQ1M8W in 60s, re-fetching (ExecpoolWrapper)
+2026-05-11T08:50:01.696354Z  WARN arx::program: arx/src/program.rs:369: No update for account 9rUSnh5VrMtRUrJrgAUwcyWvL9NYkscAsDFS5RjPW6Da in 60s, re-fetching (MempoolWrapper)
+2026-05-11T08:50:01.700291Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:95: Received execpool update with 0 computations
+2026-05-11T08:50:01.700374Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:125: Execpool contains the same computations, skipping update
+2026-05-11T08:50:01.701357Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:92: Received mempool update for account
+2026-05-11T08:50:01.702016Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:122: Mempool contains the same computations, skipping update
+2026-05-11T08:51:01.793918Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (ExecpoolWrapper)
+2026-05-11T08:51:01.794016Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (MempoolWrapper)
+2026-05-11T08:51:01.798835Z  WARN arx::program: arx/src/program.rs:369: No update for account 9EDLm5KDKc1Pf8m587kdxPMvQBNETNahcCfHLNcQ1M8W in 60s, re-fetching (ExecpoolWrapper)
+2026-05-11T08:51:01.799383Z  WARN arx::program: arx/src/program.rs:369: No update for account 9rUSnh5VrMtRUrJrgAUwcyWvL9NYkscAsDFS5RjPW6Da in 60s, re-fetching (MempoolWrapper)
+2026-05-11T08:51:01.803571Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:95: Received execpool update with 0 computations
+2026-05-11T08:51:01.803613Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:125: Execpool contains the same computations, skipping update
+2026-05-11T08:51:01.804094Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:92: Received mempool update for account
+2026-05-11T08:51:01.804145Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:122: Mempool contains the same computations, skipping update
+2026-05-11T08:52:01.893289Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (ExecpoolWrapper)
+2026-05-11T08:52:01.893422Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (MempoolWrapper)
+2026-05-11T08:52:01.896657Z  WARN arx::program: arx/src/program.rs:369: No update for account 9rUSnh5VrMtRUrJrgAUwcyWvL9NYkscAsDFS5RjPW6Da in 60s, re-fetching (MempoolWrapper)
+2026-05-11T08:52:01.896944Z  WARN arx::program: arx/src/program.rs:369: No update for account 9EDLm5KDKc1Pf8m587kdxPMvQBNETNahcCfHLNcQ1M8W in 60s, re-fetching (ExecpoolWrapper)
+2026-05-11T08:52:01.900417Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:95: Received execpool update with 0 computations
+2026-05-11T08:52:01.900451Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:125: Execpool contains the same computations, skipping update
+2026-05-11T08:52:01.901160Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:92: Received mempool update for account
+2026-05-11T08:52:01.901232Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:122: Mempool contains the same computations, skipping update
+2026-05-11T08:53:01.993500Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (ExecpoolWrapper)
+2026-05-11T08:53:01.993575Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (MempoolWrapper)
+2026-05-11T08:53:01.996584Z  WARN arx::program: arx/src/program.rs:369: No update for account 9rUSnh5VrMtRUrJrgAUwcyWvL9NYkscAsDFS5RjPW6Da in 60s, re-fetching (MempoolWrapper)
+2026-05-11T08:53:01.996938Z  WARN arx::program: arx/src/program.rs:369: No update for account 9EDLm5KDKc1Pf8m587kdxPMvQBNETNahcCfHLNcQ1M8W in 60s, re-fetching (ExecpoolWrapper)
+2026-05-11T08:53:02.001268Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:92: Received mempool update for account
+2026-05-11T08:53:02.001310Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:122: Mempool contains the same computations, skipping update
+2026-05-11T08:53:02.001587Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:95: Received execpool update with 0 computations
+2026-05-11T08:53:02.001618Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:125: Execpool contains the same computations, skipping update
+2026-05-11T08:54:02.093686Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (ExecpoolWrapper)
+2026-05-11T08:54:02.093764Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (MempoolWrapper)
+2026-05-11T08:54:02.096255Z  WARN arx::program: arx/src/program.rs:369: No update for account 9EDLm5KDKc1Pf8m587kdxPMvQBNETNahcCfHLNcQ1M8W in 60s, re-fetching (ExecpoolWrapper)
+2026-05-11T08:54:02.096526Z  WARN arx::program: arx/src/program.rs:369: No update for account 9rUSnh5VrMtRUrJrgAUwcyWvL9NYkscAsDFS5RjPW6Da in 60s, re-fetching (MempoolWrapper)
+2026-05-11T08:54:02.100388Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:95: Received execpool update with 0 computations
+2026-05-11T08:54:02.100419Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:125: Execpool contains the same computations, skipping update
+2026-05-11T08:54:02.101078Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:92: Received mempool update for account
+2026-05-11T08:54:02.101119Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:122: Mempool contains the same computations, skipping update
+2026-05-11T08:55:02.193746Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (MempoolWrapper)
+2026-05-11T08:55:02.193857Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (ExecpoolWrapper)
+2026-05-11T08:55:02.195932Z  WARN arx::program: arx/src/program.rs:369: No update for account 9EDLm5KDKc1Pf8m587kdxPMvQBNETNahcCfHLNcQ1M8W in 60s, re-fetching (ExecpoolWrapper)
+2026-05-11T08:55:02.196229Z  WARN arx::program: arx/src/program.rs:369: No update for account 9rUSnh5VrMtRUrJrgAUwcyWvL9NYkscAsDFS5RjPW6Da in 60s, re-fetching (MempoolWrapper)
+2026-05-11T08:55:02.200098Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:95: Received execpool update with 0 computations
+2026-05-11T08:55:02.200126Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:125: Execpool contains the same computations, skipping update
+2026-05-11T08:55:02.200537Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:92: Received mempool update for account
+2026-05-11T08:55:02.200606Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:122: Mempool contains the same computations, skipping update
+2026-05-11T08:56:02.294015Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (ExecpoolWrapper)
+2026-05-11T08:56:02.294063Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (MempoolWrapper)
+2026-05-11T08:56:02.300159Z  WARN arx::program: arx/src/program.rs:369: No update for account 9rUSnh5VrMtRUrJrgAUwcyWvL9NYkscAsDFS5RjPW6Da in 60s, re-fetching (MempoolWrapper)
+2026-05-11T08:56:02.300588Z  WARN arx::program: arx/src/program.rs:369: No update for account 9EDLm5KDKc1Pf8m587kdxPMvQBNETNahcCfHLNcQ1M8W in 60s, re-fetching (ExecpoolWrapper)
+2026-05-11T08:56:02.306819Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:92: Received mempool update for account
+2026-05-11T08:56:02.307105Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:122: Mempool contains the same computations, skipping update
+2026-05-11T08:56:02.307253Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:95: Received execpool update with 0 computations
+2026-05-11T08:56:02.307281Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:125: Execpool contains the same computations, skipping update
+2026-05-11T08:57:02.394250Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (MempoolWrapper)
+2026-05-11T08:57:02.394255Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (ExecpoolWrapper)
+2026-05-11T08:57:02.399155Z  WARN arx::program: arx/src/program.rs:369: No update for account 9rUSnh5VrMtRUrJrgAUwcyWvL9NYkscAsDFS5RjPW6Da in 60s, re-fetching (MempoolWrapper)
+2026-05-11T08:57:02.399438Z  WARN arx::program: arx/src/program.rs:369: No update for account 9EDLm5KDKc1Pf8m587kdxPMvQBNETNahcCfHLNcQ1M8W in 60s, re-fetching (ExecpoolWrapper)
+2026-05-11T08:57:02.404846Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:92: Received mempool update for account
+2026-05-11T08:57:02.405207Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:95: Received execpool update with 0 computations
+2026-05-11T08:57:02.405232Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:125: Execpool contains the same computations, skipping update
+2026-05-11T08:57:02.407661Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:122: Mempool contains the same computations, skipping update
+2026-05-11T08:58:02.493079Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (MempoolWrapper)
+2026-05-11T08:58:02.493170Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (ExecpoolWrapper)
+2026-05-11T08:58:02.498440Z  WARN arx::program: arx/src/program.rs:369: No update for account 9EDLm5KDKc1Pf8m587kdxPMvQBNETNahcCfHLNcQ1M8W in 60s, re-fetching (ExecpoolWrapper)
+2026-05-11T08:58:02.498806Z  WARN arx::program: arx/src/program.rs:369: No update for account 9rUSnh5VrMtRUrJrgAUwcyWvL9NYkscAsDFS5RjPW6Da in 60s, re-fetching (MempoolWrapper)
+2026-05-11T08:58:02.505025Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:95: Received execpool update with 0 computations
+2026-05-11T08:58:02.505093Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:125: Execpool contains the same computations, skipping update
+2026-05-11T08:58:02.506119Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:92: Received mempool update for account
+2026-05-11T08:58:02.506234Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:122: Mempool contains the same computations, skipping update
+2026-05-11T08:59:02.593886Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (MempoolWrapper)
+2026-05-11T08:59:02.593990Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (ExecpoolWrapper)
+2026-05-11T08:59:02.596937Z  WARN arx::program: arx/src/program.rs:369: No update for account 9rUSnh5VrMtRUrJrgAUwcyWvL9NYkscAsDFS5RjPW6Da in 60s, re-fetching (MempoolWrapper)
+2026-05-11T08:59:02.597277Z  WARN arx::program: arx/src/program.rs:369: No update for account 9EDLm5KDKc1Pf8m587kdxPMvQBNETNahcCfHLNcQ1M8W in 60s, re-fetching (ExecpoolWrapper)
+2026-05-11T08:59:02.600133Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:92: Received mempool update for account
+2026-05-11T08:59:02.600416Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:122: Mempool contains the same computations, skipping update
+2026-05-11T08:59:02.600444Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:95: Received execpool update with 0 computations
+2026-05-11T08:59:02.600473Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:125: Execpool contains the same computations, skipping update
+2026-05-11T09:00:02.693661Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (ExecpoolWrapper)
+2026-05-11T09:00:02.693785Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (MempoolWrapper)
+2026-05-11T09:00:02.699011Z  WARN arx::program: arx/src/program.rs:369: No update for account 9EDLm5KDKc1Pf8m587kdxPMvQBNETNahcCfHLNcQ1M8W in 60s, re-fetching (ExecpoolWrapper)
+2026-05-11T09:00:02.699348Z  WARN arx::program: arx/src/program.rs:369: No update for account 9rUSnh5VrMtRUrJrgAUwcyWvL9NYkscAsDFS5RjPW6Da in 60s, re-fetching (MempoolWrapper)
+2026-05-11T09:00:02.703876Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:95: Received execpool update with 0 computations
+2026-05-11T09:00:02.703920Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:125: Execpool contains the same computations, skipping update
+2026-05-11T09:00:02.704566Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:92: Received mempool update for account
+2026-05-11T09:00:02.704764Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:122: Mempool contains the same computations, skipping update
+2026-05-11T09:01:02.793363Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (ExecpoolWrapper)
+2026-05-11T09:01:02.793508Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (MempoolWrapper)
+2026-05-11T09:01:02.796287Z  WARN arx::program: arx/src/program.rs:369: No update for account 9rUSnh5VrMtRUrJrgAUwcyWvL9NYkscAsDFS5RjPW6Da in 60s, re-fetching (MempoolWrapper)
+2026-05-11T09:01:02.796583Z  WARN arx::program: arx/src/program.rs:369: No update for account 9EDLm5KDKc1Pf8m587kdxPMvQBNETNahcCfHLNcQ1M8W in 60s, re-fetching (ExecpoolWrapper)
+2026-05-11T09:01:02.801016Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:92: Received mempool update for account
+2026-05-11T09:01:02.801386Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:122: Mempool contains the same computations, skipping update
+2026-05-11T09:01:02.801675Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:95: Received execpool update with 0 computations
+2026-05-11T09:01:02.801713Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:125: Execpool contains the same computations, skipping update
+2026-05-11T09:02:02.894020Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (ExecpoolWrapper)
+2026-05-11T09:02:02.894101Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (MempoolWrapper)
+2026-05-11T09:02:02.896584Z  WARN arx::program: arx/src/program.rs:369: No update for account 9rUSnh5VrMtRUrJrgAUwcyWvL9NYkscAsDFS5RjPW6Da in 60s, re-fetching (MempoolWrapper)
+2026-05-11T09:02:02.896747Z  WARN arx::program: arx/src/program.rs:369: No update for account 9EDLm5KDKc1Pf8m587kdxPMvQBNETNahcCfHLNcQ1M8W in 60s, re-fetching (ExecpoolWrapper)
+2026-05-11T09:02:02.901769Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:92: Received mempool update for account
+2026-05-11T09:02:02.901822Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:122: Mempool contains the same computations, skipping update
+2026-05-11T09:02:02.902063Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:95: Received execpool update with 0 computations
+2026-05-11T09:02:02.902081Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:125: Execpool contains the same computations, skipping update
+2026-05-11T09:03:02.993219Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (MempoolWrapper)
+2026-05-11T09:03:02.993325Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (ExecpoolWrapper)
+2026-05-11T09:03:02.997251Z  WARN arx::program: arx/src/program.rs:369: No update for account 9rUSnh5VrMtRUrJrgAUwcyWvL9NYkscAsDFS5RjPW6Da in 60s, re-fetching (MempoolWrapper)
+2026-05-11T09:03:02.997617Z  WARN arx::program: arx/src/program.rs:369: No update for account 9EDLm5KDKc1Pf8m587kdxPMvQBNETNahcCfHLNcQ1M8W in 60s, re-fetching (ExecpoolWrapper)
+2026-05-11T09:03:03.004557Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:92: Received mempool update for account
+2026-05-11T09:03:03.004645Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:122: Mempool contains the same computations, skipping update
+2026-05-11T09:03:03.004883Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:95: Received execpool update with 0 computations
+2026-05-11T09:03:03.004908Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:125: Execpool contains the same computations, skipping update
+2026-05-11T09:04:03.094088Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (MempoolWrapper)
+2026-05-11T09:04:03.094147Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (ExecpoolWrapper)
+2026-05-11T09:04:03.098492Z  WARN arx::program: arx/src/program.rs:369: No update for account 9EDLm5KDKc1Pf8m587kdxPMvQBNETNahcCfHLNcQ1M8W in 60s, re-fetching (ExecpoolWrapper)
+2026-05-11T09:04:03.099080Z  WARN arx::program: arx/src/program.rs:369: No update for account 9rUSnh5VrMtRUrJrgAUwcyWvL9NYkscAsDFS5RjPW6Da in 60s, re-fetching (MempoolWrapper)
+2026-05-11T09:04:03.103629Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:95: Received execpool update with 0 computations
+2026-05-11T09:04:03.103662Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:125: Execpool contains the same computations, skipping update
+2026-05-11T09:04:03.104045Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:92: Received mempool update for account
+2026-05-11T09:04:03.104129Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:122: Mempool contains the same computations, skipping update
+2026-05-11T09:05:03.193247Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (ExecpoolWrapper)
+2026-05-11T09:05:03.193365Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (MempoolWrapper)
+2026-05-11T09:05:03.205945Z  WARN arx::program: arx/src/program.rs:369: No update for account 9EDLm5KDKc1Pf8m587kdxPMvQBNETNahcCfHLNcQ1M8W in 60s, re-fetching (ExecpoolWrapper)
+2026-05-11T09:05:03.206436Z  WARN arx::program: arx/src/program.rs:369: No update for account 9rUSnh5VrMtRUrJrgAUwcyWvL9NYkscAsDFS5RjPW6Da in 60s, re-fetching (MempoolWrapper)
+2026-05-11T09:05:03.211760Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:95: Received execpool update with 0 computations
+2026-05-11T09:05:03.211885Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:125: Execpool contains the same computations, skipping update
+2026-05-11T09:05:03.212327Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:92: Received mempool update for account
+2026-05-11T09:05:03.212363Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:122: Mempool contains the same computations, skipping update
+2026-05-11T09:06:03.293815Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (ExecpoolWrapper)
+2026-05-11T09:06:03.293925Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (MempoolWrapper)
+2026-05-11T09:06:03.299114Z  WARN arx::program: arx/src/program.rs:369: No update for account 9rUSnh5VrMtRUrJrgAUwcyWvL9NYkscAsDFS5RjPW6Da in 60s, re-fetching (MempoolWrapper)
+2026-05-11T09:06:03.299448Z  WARN arx::program: arx/src/program.rs:369: No update for account 9EDLm5KDKc1Pf8m587kdxPMvQBNETNahcCfHLNcQ1M8W in 60s, re-fetching (ExecpoolWrapper)
+2026-05-11T09:06:03.303012Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:92: Received mempool update for account
+2026-05-11T09:06:03.303160Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:122: Mempool contains the same computations, skipping update
+2026-05-11T09:06:03.303313Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:95: Received execpool update with 0 computations
+2026-05-11T09:06:03.303368Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:125: Execpool contains the same computations, skipping update
+2026-05-11T09:07:03.393690Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (MempoolWrapper)
+2026-05-11T09:07:03.393736Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (ExecpoolWrapper)
+2026-05-11T09:07:03.405306Z  WARN arx::program: arx/src/program.rs:369: No update for account 9rUSnh5VrMtRUrJrgAUwcyWvL9NYkscAsDFS5RjPW6Da in 60s, re-fetching (MempoolWrapper)
+2026-05-11T09:07:03.405951Z  WARN arx::program: arx/src/program.rs:369: No update for account 9EDLm5KDKc1Pf8m587kdxPMvQBNETNahcCfHLNcQ1M8W in 60s, re-fetching (ExecpoolWrapper)
+2026-05-11T09:07:03.428268Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:92: Received mempool update for account
+2026-05-11T09:07:03.428881Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:95: Received execpool update with 0 computations
+2026-05-11T09:07:03.428911Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:125: Execpool contains the same computations, skipping update
+2026-05-11T09:07:03.429195Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:122: Mempool contains the same computations, skipping update
+2026-05-11T09:08:03.493506Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (MempoolWrapper)
+2026-05-11T09:08:03.493568Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (ExecpoolWrapper)
+2026-05-11T09:08:03.508304Z  WARN arx::program: arx/src/program.rs:369: No update for account 9rUSnh5VrMtRUrJrgAUwcyWvL9NYkscAsDFS5RjPW6Da in 60s, re-fetching (MempoolWrapper)
+2026-05-11T09:08:03.508705Z  WARN arx::program: arx/src/program.rs:369: No update for account 9EDLm5KDKc1Pf8m587kdxPMvQBNETNahcCfHLNcQ1M8W in 60s, re-fetching (ExecpoolWrapper)
+2026-05-11T09:08:03.529155Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:92: Received mempool update for account
+2026-05-11T09:08:03.529583Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:122: Mempool contains the same computations, skipping update
+2026-05-11T09:08:03.529619Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:95: Received execpool update with 0 computations
+2026-05-11T09:08:03.529643Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:125: Execpool contains the same computations, skipping update
+2026-05-11T09:09:03.593114Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (ExecpoolWrapper)
+2026-05-11T09:09:03.593248Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (MempoolWrapper)
+2026-05-11T09:09:03.605979Z  WARN arx::program: arx/src/program.rs:369: No update for account 9EDLm5KDKc1Pf8m587kdxPMvQBNETNahcCfHLNcQ1M8W in 60s, re-fetching (ExecpoolWrapper)
+2026-05-11T09:09:03.606414Z  WARN arx::program: arx/src/program.rs:369: No update for account 9rUSnh5VrMtRUrJrgAUwcyWvL9NYkscAsDFS5RjPW6Da in 60s, re-fetching (MempoolWrapper)
+2026-05-11T09:09:03.623490Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:95: Received execpool update with 0 computations
+2026-05-11T09:09:03.623539Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:125: Execpool contains the same computations, skipping update
+2026-05-11T09:09:03.627725Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:92: Received mempool update for account
+2026-05-11T09:09:03.628051Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:122: Mempool contains the same computations, skipping update
+2026-05-11T09:10:03.693836Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (ExecpoolWrapper)
+2026-05-11T09:10:03.694061Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (MempoolWrapper)
+2026-05-11T09:10:03.705735Z  WARN arx::program: arx/src/program.rs:369: No update for account 9EDLm5KDKc1Pf8m587kdxPMvQBNETNahcCfHLNcQ1M8W in 60s, re-fetching (ExecpoolWrapper)
+2026-05-11T09:10:03.707015Z  WARN arx::program: arx/src/program.rs:369: No update for account 9rUSnh5VrMtRUrJrgAUwcyWvL9NYkscAsDFS5RjPW6Da in 60s, re-fetching (MempoolWrapper)
+2026-05-11T09:10:03.712234Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:95: Received execpool update with 0 computations
+2026-05-11T09:10:03.712284Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:125: Execpool contains the same computations, skipping update
+2026-05-11T09:10:03.718073Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:92: Received mempool update for account
+2026-05-11T09:10:03.718184Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:122: Mempool contains the same computations, skipping update
+2026-05-11T09:11:03.793136Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (MempoolWrapper)
+2026-05-11T09:11:03.793254Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (ExecpoolWrapper)
+2026-05-11T09:11:03.805714Z  WARN arx::program: arx/src/program.rs:369: No update for account 9EDLm5KDKc1Pf8m587kdxPMvQBNETNahcCfHLNcQ1M8W in 60s, re-fetching (ExecpoolWrapper)
+2026-05-11T09:11:03.806128Z  WARN arx::program: arx/src/program.rs:369: No update for account 9rUSnh5VrMtRUrJrgAUwcyWvL9NYkscAsDFS5RjPW6Da in 60s, re-fetching (MempoolWrapper)
+2026-05-11T09:11:03.827565Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:95: Received execpool update with 0 computations
+2026-05-11T09:11:03.827673Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:125: Execpool contains the same computations, skipping update
+2026-05-11T09:11:03.830275Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:92: Received mempool update for account
+2026-05-11T09:11:03.830362Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:122: Mempool contains the same computations, skipping update
+2026-05-11T09:12:03.893627Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (ExecpoolWrapper)
+2026-05-11T09:12:03.893433Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (MempoolWrapper)
+2026-05-11T09:12:03.911254Z  WARN arx::program: arx/src/program.rs:369: No update for account 9EDLm5KDKc1Pf8m587kdxPMvQBNETNahcCfHLNcQ1M8W in 60s, re-fetching (ExecpoolWrapper)
+2026-05-11T09:12:03.912953Z  WARN arx::program: arx/src/program.rs:369: No update for account 9rUSnh5VrMtRUrJrgAUwcyWvL9NYkscAsDFS5RjPW6Da in 60s, re-fetching (MempoolWrapper)
+2026-05-11T09:12:03.917336Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:95: Received execpool update with 0 computations
+2026-05-11T09:12:03.917411Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:125: Execpool contains the same computations, skipping update
+2026-05-11T09:12:03.919580Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:92: Received mempool update for account
+2026-05-11T09:12:03.919699Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:122: Mempool contains the same computations, skipping update
+2026-05-11T09:13:03.993983Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (ExecpoolWrapper)
+2026-05-11T09:13:03.994115Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (MempoolWrapper)
+2026-05-11T09:13:03.997072Z  WARN arx::program: arx/src/program.rs:369: No update for account 9EDLm5KDKc1Pf8m587kdxPMvQBNETNahcCfHLNcQ1M8W in 60s, re-fetching (ExecpoolWrapper)
+2026-05-11T09:13:03.998559Z  WARN arx::program: arx/src/program.rs:369: No update for account 9rUSnh5VrMtRUrJrgAUwcyWvL9NYkscAsDFS5RjPW6Da in 60s, re-fetching (MempoolWrapper)
+2026-05-11T09:13:04.018711Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:95: Received execpool update with 0 computations
+2026-05-11T09:13:04.018840Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:125: Execpool contains the same computations, skipping update
+2026-05-11T09:13:04.019900Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:92: Received mempool update for account
+2026-05-11T09:13:04.020039Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:122: Mempool contains the same computations, skipping update
+2026-05-11T09:14:04.093973Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (ExecpoolWrapper)
+2026-05-11T09:14:04.094071Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (MempoolWrapper)
+2026-05-11T09:14:04.096925Z  WARN arx::program: arx/src/program.rs:369: No update for account 9EDLm5KDKc1Pf8m587kdxPMvQBNETNahcCfHLNcQ1M8W in 60s, re-fetching (ExecpoolWrapper)
+2026-05-11T09:14:04.097239Z  WARN arx::program: arx/src/program.rs:369: No update for account 9rUSnh5VrMtRUrJrgAUwcyWvL9NYkscAsDFS5RjPW6Da in 60s, re-fetching (MempoolWrapper)
+2026-05-11T09:14:04.100403Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:95: Received execpool update with 0 computations
+2026-05-11T09:14:04.100457Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:125: Execpool contains the same computations, skipping update
+2026-05-11T09:14:04.101162Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:92: Received mempool update for account
+2026-05-11T09:14:04.101551Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:122: Mempool contains the same computations, skipping update
+2026-05-11T09:15:04.193345Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (MempoolWrapper)
+2026-05-11T09:15:04.193401Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (ExecpoolWrapper)
+2026-05-11T09:15:04.196433Z  WARN arx::program: arx/src/program.rs:369: No update for account 9rUSnh5VrMtRUrJrgAUwcyWvL9NYkscAsDFS5RjPW6Da in 60s, re-fetching (MempoolWrapper)
+2026-05-11T09:15:04.206188Z  WARN arx::program: arx/src/program.rs:369: No update for account 9EDLm5KDKc1Pf8m587kdxPMvQBNETNahcCfHLNcQ1M8W in 60s, re-fetching (ExecpoolWrapper)
+2026-05-11T09:15:04.215086Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:92: Received mempool update for account
+2026-05-11T09:15:04.215628Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:95: Received execpool update with 0 computations
+2026-05-11T09:15:04.215894Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:125: Execpool contains the same computations, skipping update
+2026-05-11T09:15:04.216045Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:122: Mempool contains the same computations, skipping update
+2026-05-11T09:16:04.293879Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (ExecpoolWrapper)
+2026-05-11T09:16:04.293956Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (MempoolWrapper)
+2026-05-11T09:16:04.297064Z  WARN arx::program: arx/src/program.rs:369: No update for account 9EDLm5KDKc1Pf8m587kdxPMvQBNETNahcCfHLNcQ1M8W in 60s, re-fetching (ExecpoolWrapper)
+2026-05-11T09:16:04.297649Z  WARN arx::program: arx/src/program.rs:369: No update for account 9rUSnh5VrMtRUrJrgAUwcyWvL9NYkscAsDFS5RjPW6Da in 60s, re-fetching (MempoolWrapper)
+2026-05-11T09:16:04.300495Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:95: Received execpool update with 0 computations
+2026-05-11T09:16:04.300517Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:125: Execpool contains the same computations, skipping update
+2026-05-11T09:16:04.302875Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:92: Received mempool update for account
+2026-05-11T09:16:04.302918Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:122: Mempool contains the same computations, skipping update
+2026-05-11T09:17:04.393402Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (ExecpoolWrapper)
+2026-05-11T09:17:04.393599Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (MempoolWrapper)
+2026-05-11T09:17:04.397146Z  WARN arx::program: arx/src/program.rs:369: No update for account 9EDLm5KDKc1Pf8m587kdxPMvQBNETNahcCfHLNcQ1M8W in 60s, re-fetching (ExecpoolWrapper)
+2026-05-11T09:17:04.397507Z  WARN arx::program: arx/src/program.rs:369: No update for account 9rUSnh5VrMtRUrJrgAUwcyWvL9NYkscAsDFS5RjPW6Da in 60s, re-fetching (MempoolWrapper)
+2026-05-11T09:17:04.402591Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:95: Received execpool update with 0 computations
+2026-05-11T09:17:04.402719Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:125: Execpool contains the same computations, skipping update
+2026-05-11T09:17:04.403065Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:92: Received mempool update for account
+2026-05-11T09:17:04.403165Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:122: Mempool contains the same computations, skipping update
+2026-05-11T09:18:04.493721Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (MempoolWrapper)
+2026-05-11T09:18:04.493816Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (ExecpoolWrapper)
+2026-05-11T09:18:04.496222Z  WARN arx::program: arx/src/program.rs:369: No update for account 9rUSnh5VrMtRUrJrgAUwcyWvL9NYkscAsDFS5RjPW6Da in 60s, re-fetching (MempoolWrapper)
+2026-05-11T09:18:04.496472Z  WARN arx::program: arx/src/program.rs:369: No update for account 9EDLm5KDKc1Pf8m587kdxPMvQBNETNahcCfHLNcQ1M8W in 60s, re-fetching (ExecpoolWrapper)
+2026-05-11T09:18:04.503710Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:92: Received mempool update for account
+2026-05-11T09:18:04.503876Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:122: Mempool contains the same computations, skipping update
+2026-05-11T09:18:04.504039Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:95: Received execpool update with 0 computations
+2026-05-11T09:18:04.504067Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:125: Execpool contains the same computations, skipping update
+2026-05-11T09:19:04.593389Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (MempoolWrapper)
+2026-05-11T09:19:04.593481Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (ExecpoolWrapper)
+2026-05-11T09:19:04.596122Z  WARN arx::program: arx/src/program.rs:369: No update for account 9EDLm5KDKc1Pf8m587kdxPMvQBNETNahcCfHLNcQ1M8W in 60s, re-fetching (ExecpoolWrapper)
+2026-05-11T09:19:04.596476Z  WARN arx::program: arx/src/program.rs:369: No update for account 9rUSnh5VrMtRUrJrgAUwcyWvL9NYkscAsDFS5RjPW6Da in 60s, re-fetching (MempoolWrapper)
+2026-05-11T09:19:04.599974Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:95: Received execpool update with 0 computations
+2026-05-11T09:19:04.600004Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:125: Execpool contains the same computations, skipping update
+2026-05-11T09:19:04.601006Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:92: Received mempool update for account
+2026-05-11T09:19:04.601075Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:122: Mempool contains the same computations, skipping update
+2026-05-11T09:20:04.693718Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (MempoolWrapper)
+2026-05-11T09:20:04.693827Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (ExecpoolWrapper)
+2026-05-11T09:20:04.705439Z  WARN arx::program: arx/src/program.rs:369: No update for account 9EDLm5KDKc1Pf8m587kdxPMvQBNETNahcCfHLNcQ1M8W in 60s, re-fetching (ExecpoolWrapper)
+2026-05-11T09:20:04.705866Z  WARN arx::program: arx/src/program.rs:369: No update for account 9rUSnh5VrMtRUrJrgAUwcyWvL9NYkscAsDFS5RjPW6Da in 60s, re-fetching (MempoolWrapper)
+2026-05-11T09:20:04.715902Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:95: Received execpool update with 0 computations
+2026-05-11T09:20:04.715951Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:125: Execpool contains the same computations, skipping update
+2026-05-11T09:20:04.718780Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:92: Received mempool update for account
+2026-05-11T09:20:04.718855Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:122: Mempool contains the same computations, skipping update
+2026-05-11T09:21:04.793094Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (MempoolWrapper)
+2026-05-11T09:21:04.793222Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (ExecpoolWrapper)
+2026-05-11T09:21:04.811139Z  WARN arx::program: arx/src/program.rs:369: No update for account 9rUSnh5VrMtRUrJrgAUwcyWvL9NYkscAsDFS5RjPW6Da in 60s, re-fetching (MempoolWrapper)
+2026-05-11T09:21:04.811553Z  WARN arx::program: arx/src/program.rs:369: No update for account 9EDLm5KDKc1Pf8m587kdxPMvQBNETNahcCfHLNcQ1M8W in 60s, re-fetching (ExecpoolWrapper)
+2026-05-11T09:21:04.832629Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:92: Received mempool update for account
+2026-05-11T09:21:04.832707Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:122: Mempool contains the same computations, skipping update
+2026-05-11T09:21:04.833029Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:95: Received execpool update with 0 computations
+2026-05-11T09:21:04.833051Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:125: Execpool contains the same computations, skipping update
+2026-05-11T09:22:04.893097Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (ExecpoolWrapper)
+2026-05-11T09:22:04.893188Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (MempoolWrapper)
+2026-05-11T09:22:04.896364Z  WARN arx::program: arx/src/program.rs:369: No update for account 9EDLm5KDKc1Pf8m587kdxPMvQBNETNahcCfHLNcQ1M8W in 60s, re-fetching (ExecpoolWrapper)
+2026-05-11T09:22:04.896861Z  WARN arx::program: arx/src/program.rs:369: No update for account 9rUSnh5VrMtRUrJrgAUwcyWvL9NYkscAsDFS5RjPW6Da in 60s, re-fetching (MempoolWrapper)
+2026-05-11T09:22:04.912640Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:95: Received execpool update with 0 computations
+2026-05-11T09:22:04.912666Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:125: Execpool contains the same computations, skipping update
+2026-05-11T09:22:04.912920Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:92: Received mempool update for account
+2026-05-11T09:22:04.912952Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:122: Mempool contains the same computations, skipping update
+2026-05-11T09:23:04.993086Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (ExecpoolWrapper)
+2026-05-11T09:23:04.993231Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (MempoolWrapper)
+2026-05-11T09:23:04.996052Z  WARN arx::program: arx/src/program.rs:369: No update for account 9EDLm5KDKc1Pf8m587kdxPMvQBNETNahcCfHLNcQ1M8W in 60s, re-fetching (ExecpoolWrapper)
+2026-05-11T09:23:04.996508Z  WARN arx::program: arx/src/program.rs:369: No update for account 9rUSnh5VrMtRUrJrgAUwcyWvL9NYkscAsDFS5RjPW6Da in 60s, re-fetching (MempoolWrapper)
+2026-05-11T09:23:04.998689Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:95: Received execpool update with 0 computations
+2026-05-11T09:23:04.998713Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:125: Execpool contains the same computations, skipping update
+2026-05-11T09:23:04.999147Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:92: Received mempool update for account
+2026-05-11T09:23:04.999224Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:122: Mempool contains the same computations, skipping update
+2026-05-11T09:24:05.093810Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (MempoolWrapper)
+2026-05-11T09:24:05.093978Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (ExecpoolWrapper)
+2026-05-11T09:24:05.098288Z  WARN arx::program: arx/src/program.rs:369: No update for account 9EDLm5KDKc1Pf8m587kdxPMvQBNETNahcCfHLNcQ1M8W in 60s, re-fetching (ExecpoolWrapper)
+2026-05-11T09:24:05.098631Z  WARN arx::program: arx/src/program.rs:369: No update for account 9rUSnh5VrMtRUrJrgAUwcyWvL9NYkscAsDFS5RjPW6Da in 60s, re-fetching (MempoolWrapper)
+2026-05-11T09:24:05.100769Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:95: Received execpool update with 0 computations
+2026-05-11T09:24:05.100793Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:125: Execpool contains the same computations, skipping update
+2026-05-11T09:24:05.106697Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:92: Received mempool update for account
+2026-05-11T09:24:05.115592Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:122: Mempool contains the same computations, skipping update
+2026-05-11T09:25:05.193812Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (MempoolWrapper)
+2026-05-11T09:25:05.193942Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (ExecpoolWrapper)
+2026-05-11T09:25:05.196628Z  WARN arx::program: arx/src/program.rs:369: No update for account 9rUSnh5VrMtRUrJrgAUwcyWvL9NYkscAsDFS5RjPW6Da in 60s, re-fetching (MempoolWrapper)
+2026-05-11T09:25:05.196959Z  WARN arx::program: arx/src/program.rs:369: No update for account 9EDLm5KDKc1Pf8m587kdxPMvQBNETNahcCfHLNcQ1M8W in 60s, re-fetching (ExecpoolWrapper)
+2026-05-11T09:25:05.210215Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:92: Received mempool update for account
+2026-05-11T09:25:05.210256Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:122: Mempool contains the same computations, skipping update
+2026-05-11T09:25:05.210454Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:95: Received execpool update with 0 computations
+2026-05-11T09:25:05.210509Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:125: Execpool contains the same computations, skipping update
+2026-05-11T09:26:05.293746Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (MempoolWrapper)
+2026-05-11T09:26:05.293699Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (ExecpoolWrapper)
+2026-05-11T09:26:05.297161Z  WARN arx::program: arx/src/program.rs:369: No update for account 9EDLm5KDKc1Pf8m587kdxPMvQBNETNahcCfHLNcQ1M8W in 60s, re-fetching (ExecpoolWrapper)
+2026-05-11T09:26:05.297602Z  WARN arx::program: arx/src/program.rs:369: No update for account 9rUSnh5VrMtRUrJrgAUwcyWvL9NYkscAsDFS5RjPW6Da in 60s, re-fetching (MempoolWrapper)
+2026-05-11T09:26:05.300499Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:95: Received execpool update with 0 computations
+2026-05-11T09:26:05.300523Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:125: Execpool contains the same computations, skipping update
+2026-05-11T09:26:05.305402Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:92: Received mempool update for account
+2026-05-11T09:26:05.314184Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:122: Mempool contains the same computations, skipping update
+2026-05-11T09:27:05.393759Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (MempoolWrapper)
+2026-05-11T09:27:05.393832Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (ExecpoolWrapper)
+2026-05-11T09:27:05.396558Z  WARN arx::program: arx/src/program.rs:369: No update for account 9EDLm5KDKc1Pf8m587kdxPMvQBNETNahcCfHLNcQ1M8W in 60s, re-fetching (ExecpoolWrapper)
+2026-05-11T09:27:05.397311Z  WARN arx::program: arx/src/program.rs:369: No update for account 9rUSnh5VrMtRUrJrgAUwcyWvL9NYkscAsDFS5RjPW6Da in 60s, re-fetching (MempoolWrapper)
+2026-05-11T09:27:05.399445Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:95: Received execpool update with 0 computations
+2026-05-11T09:27:05.399479Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:125: Execpool contains the same computations, skipping update
+2026-05-11T09:27:05.405081Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:92: Received mempool update for account
+2026-05-11T09:27:05.420536Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:122: Mempool contains the same computations, skipping update
+2026-05-11T09:28:05.493678Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (ExecpoolWrapper)
+2026-05-11T09:28:05.493883Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (MempoolWrapper)
+2026-05-11T09:28:05.497051Z  WARN arx::program: arx/src/program.rs:369: No update for account 9EDLm5KDKc1Pf8m587kdxPMvQBNETNahcCfHLNcQ1M8W in 60s, re-fetching (ExecpoolWrapper)
+2026-05-11T09:28:05.497267Z  WARN arx::program: arx/src/program.rs:369: No update for account 9rUSnh5VrMtRUrJrgAUwcyWvL9NYkscAsDFS5RjPW6Da in 60s, re-fetching (MempoolWrapper)
+2026-05-11T09:28:05.502663Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:95: Received execpool update with 0 computations
+2026-05-11T09:28:05.502688Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:125: Execpool contains the same computations, skipping update
+2026-05-11T09:28:05.504383Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:92: Received mempool update for account
+2026-05-11T09:28:05.505137Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:122: Mempool contains the same computations, skipping update
+2026-05-11T09:29:05.593917Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (ExecpoolWrapper)
+2026-05-11T09:29:05.594054Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (MempoolWrapper)
+2026-05-11T09:29:05.596778Z  WARN arx::program: arx/src/program.rs:369: No update for account 9rUSnh5VrMtRUrJrgAUwcyWvL9NYkscAsDFS5RjPW6Da in 60s, re-fetching (MempoolWrapper)
+2026-05-11T09:29:05.596993Z  WARN arx::program: arx/src/program.rs:369: No update for account 9EDLm5KDKc1Pf8m587kdxPMvQBNETNahcCfHLNcQ1M8W in 60s, re-fetching (ExecpoolWrapper)
+2026-05-11T09:29:05.598660Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:92: Received mempool update for account
+2026-05-11T09:29:05.598745Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:122: Mempool contains the same computations, skipping update
+2026-05-11T09:29:05.598909Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:95: Received execpool update with 0 computations
+2026-05-11T09:29:05.598949Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:125: Execpool contains the same computations, skipping update
+2026-05-11T09:30:05.693811Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (ExecpoolWrapper)
+2026-05-11T09:30:05.693984Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (MempoolWrapper)
+2026-05-11T09:30:05.696397Z  WARN arx::program: arx/src/program.rs:369: No update for account 9rUSnh5VrMtRUrJrgAUwcyWvL9NYkscAsDFS5RjPW6Da in 60s, re-fetching (MempoolWrapper)
+2026-05-11T09:30:05.696677Z  WARN arx::program: arx/src/program.rs:369: No update for account 9EDLm5KDKc1Pf8m587kdxPMvQBNETNahcCfHLNcQ1M8W in 60s, re-fetching (ExecpoolWrapper)
+2026-05-11T09:30:05.703005Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:92: Received mempool update for account
+2026-05-11T09:30:05.703050Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:122: Mempool contains the same computations, skipping update
+2026-05-11T09:30:05.703395Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:95: Received execpool update with 0 computations
+2026-05-11T09:30:05.703418Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:125: Execpool contains the same computations, skipping update
+2026-05-11T09:31:05.793679Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (MempoolWrapper)
+2026-05-11T09:31:05.793778Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (ExecpoolWrapper)
+2026-05-11T09:31:05.795949Z  WARN arx::program: arx/src/program.rs:369: No update for account 9rUSnh5VrMtRUrJrgAUwcyWvL9NYkscAsDFS5RjPW6Da in 60s, re-fetching (MempoolWrapper)
+2026-05-11T09:31:05.796177Z  WARN arx::program: arx/src/program.rs:369: No update for account 9EDLm5KDKc1Pf8m587kdxPMvQBNETNahcCfHLNcQ1M8W in 60s, re-fetching (ExecpoolWrapper)
+2026-05-11T09:31:05.801172Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:92: Received mempool update for account
+2026-05-11T09:31:05.801212Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:122: Mempool contains the same computations, skipping update
+2026-05-11T09:31:05.801662Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:95: Received execpool update with 0 computations
+2026-05-11T09:31:05.801696Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:125: Execpool contains the same computations, skipping update
+2026-05-11T09:32:05.893235Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (ExecpoolWrapper)
+2026-05-11T09:32:05.893414Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (MempoolWrapper)
+2026-05-11T09:32:05.895946Z  WARN arx::program: arx/src/program.rs:369: No update for account 9EDLm5KDKc1Pf8m587kdxPMvQBNETNahcCfHLNcQ1M8W in 60s, re-fetching (ExecpoolWrapper)
+2026-05-11T09:32:05.896591Z  WARN arx::program: arx/src/program.rs:369: No update for account 9rUSnh5VrMtRUrJrgAUwcyWvL9NYkscAsDFS5RjPW6Da in 60s, re-fetching (MempoolWrapper)
+2026-05-11T09:32:05.912833Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:95: Received execpool update with 0 computations
+2026-05-11T09:32:05.912892Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:125: Execpool contains the same computations, skipping update
+2026-05-11T09:32:05.917473Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:92: Received mempool update for account
+2026-05-11T09:32:05.917998Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:122: Mempool contains the same computations, skipping update
+2026-05-11T09:33:05.993799Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (MempoolWrapper)
+2026-05-11T09:33:05.993893Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (ExecpoolWrapper)
+2026-05-11T09:33:05.996755Z  WARN arx::program: arx/src/program.rs:369: No update for account 9EDLm5KDKc1Pf8m587kdxPMvQBNETNahcCfHLNcQ1M8W in 60s, re-fetching (ExecpoolWrapper)
+2026-05-11T09:33:05.997078Z  WARN arx::program: arx/src/program.rs:369: No update for account 9rUSnh5VrMtRUrJrgAUwcyWvL9NYkscAsDFS5RjPW6Da in 60s, re-fetching (MempoolWrapper)
+2026-05-11T09:33:06.001236Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:95: Received execpool update with 0 computations
+2026-05-11T09:33:06.001257Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:125: Execpool contains the same computations, skipping update
+2026-05-11T09:33:06.003296Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:92: Received mempool update for account
+2026-05-11T09:33:06.003501Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:122: Mempool contains the same computations, skipping update
+2026-05-11T09:34:06.093219Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (ExecpoolWrapper)
+2026-05-11T09:34:06.093302Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (MempoolWrapper)
+2026-05-11T09:34:06.095940Z  WARN arx::program: arx/src/program.rs:369: No update for account 9EDLm5KDKc1Pf8m587kdxPMvQBNETNahcCfHLNcQ1M8W in 60s, re-fetching (ExecpoolWrapper)
+2026-05-11T09:34:06.096451Z  WARN arx::program: arx/src/program.rs:369: No update for account 9rUSnh5VrMtRUrJrgAUwcyWvL9NYkscAsDFS5RjPW6Da in 60s, re-fetching (MempoolWrapper)
+2026-05-11T09:34:06.099603Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:95: Received execpool update with 0 computations
+2026-05-11T09:34:06.099635Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:125: Execpool contains the same computations, skipping update
+2026-05-11T09:34:06.100253Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:92: Received mempool update for account
+2026-05-11T09:34:06.100291Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:122: Mempool contains the same computations, skipping update
+2026-05-11T09:35:06.193317Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (MempoolWrapper)
+2026-05-11T09:35:06.193455Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (ExecpoolWrapper)
+2026-05-11T09:35:06.195836Z  WARN arx::program: arx/src/program.rs:369: No update for account 9EDLm5KDKc1Pf8m587kdxPMvQBNETNahcCfHLNcQ1M8W in 60s, re-fetching (ExecpoolWrapper)
+2026-05-11T09:35:06.196065Z  WARN arx::program: arx/src/program.rs:369: No update for account 9rUSnh5VrMtRUrJrgAUwcyWvL9NYkscAsDFS5RjPW6Da in 60s, re-fetching (MempoolWrapper)
+2026-05-11T09:35:06.202966Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:95: Received execpool update with 0 computations
+2026-05-11T09:35:06.202991Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:125: Execpool contains the same computations, skipping update
+2026-05-11T09:35:06.203809Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:92: Received mempool update for account
+2026-05-11T09:35:06.204149Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:122: Mempool contains the same computations, skipping update
+2026-05-11T09:36:06.293878Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (ExecpoolWrapper)
+2026-05-11T09:36:06.294023Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (MempoolWrapper)
+2026-05-11T09:36:06.296253Z  WARN arx::program: arx/src/program.rs:369: No update for account 9rUSnh5VrMtRUrJrgAUwcyWvL9NYkscAsDFS5RjPW6Da in 60s, re-fetching (MempoolWrapper)
+2026-05-11T09:36:06.296651Z  WARN arx::program: arx/src/program.rs:369: No update for account 9EDLm5KDKc1Pf8m587kdxPMvQBNETNahcCfHLNcQ1M8W in 60s, re-fetching (ExecpoolWrapper)
+2026-05-11T09:36:06.299463Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:95: Received execpool update with 0 computations
+2026-05-11T09:36:06.299489Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:125: Execpool contains the same computations, skipping update
+2026-05-11T09:36:06.300275Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:92: Received mempool update for account
+2026-05-11T09:36:06.300318Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:122: Mempool contains the same computations, skipping update
+2026-05-11T09:37:06.393954Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (ExecpoolWrapper)
+2026-05-11T09:37:06.394039Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (MempoolWrapper)
+2026-05-11T09:37:06.396408Z  WARN arx::program: arx/src/program.rs:369: No update for account 9EDLm5KDKc1Pf8m587kdxPMvQBNETNahcCfHLNcQ1M8W in 60s, re-fetching (ExecpoolWrapper)
+2026-05-11T09:37:06.396632Z  WARN arx::program: arx/src/program.rs:369: No update for account 9rUSnh5VrMtRUrJrgAUwcyWvL9NYkscAsDFS5RjPW6Da in 60s, re-fetching (MempoolWrapper)
+2026-05-11T09:37:06.404282Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:95: Received execpool update with 0 computations
+2026-05-11T09:37:06.404331Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:125: Execpool contains the same computations, skipping update
+2026-05-11T09:37:06.405957Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:92: Received mempool update for account
+2026-05-11T09:37:06.406132Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:122: Mempool contains the same computations, skipping update
+2026-05-11T09:38:06.493121Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (MempoolWrapper)
+2026-05-11T09:38:06.493209Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (ExecpoolWrapper)
+2026-05-11T09:38:06.495618Z  WARN arx::program: arx/src/program.rs:369: No update for account 9EDLm5KDKc1Pf8m587kdxPMvQBNETNahcCfHLNcQ1M8W in 60s, re-fetching (ExecpoolWrapper)
+2026-05-11T09:38:06.495986Z  WARN arx::program: arx/src/program.rs:369: No update for account 9rUSnh5VrMtRUrJrgAUwcyWvL9NYkscAsDFS5RjPW6Da in 60s, re-fetching (MempoolWrapper)
+2026-05-11T09:38:06.499772Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:95: Received execpool update with 0 computations
+2026-05-11T09:38:06.499815Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:125: Execpool contains the same computations, skipping update
+2026-05-11T09:38:06.503601Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:92: Received mempool update for account
+2026-05-11T09:38:06.504085Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:122: Mempool contains the same computations, skipping update
+2026-05-11T09:39:06.593666Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (ExecpoolWrapper)
+2026-05-11T09:39:06.593753Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (MempoolWrapper)
+2026-05-11T09:39:06.596222Z  WARN arx::program: arx/src/program.rs:369: No update for account 9EDLm5KDKc1Pf8m587kdxPMvQBNETNahcCfHLNcQ1M8W in 60s, re-fetching (ExecpoolWrapper)
+2026-05-11T09:39:06.596471Z  WARN arx::program: arx/src/program.rs:369: No update for account 9rUSnh5VrMtRUrJrgAUwcyWvL9NYkscAsDFS5RjPW6Da in 60s, re-fetching (MempoolWrapper)
+2026-05-11T09:39:06.607029Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:95: Received execpool update with 0 computations
+2026-05-11T09:39:06.607122Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:125: Execpool contains the same computations, skipping update
+2026-05-11T09:39:06.609479Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:92: Received mempool update for account
+2026-05-11T09:39:06.609552Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:122: Mempool contains the same computations, skipping update
+2026-05-11T09:40:06.693731Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (ExecpoolWrapper)
+2026-05-11T09:40:06.693832Z DEBUG arx::program: arx/src/program.rs:361: Checking for stale accounts, found 1 stale accounts (MempoolWrapper)
+2026-05-11T09:40:06.697061Z  WARN arx::program: arx/src/program.rs:369: No update for account 9rUSnh5VrMtRUrJrgAUwcyWvL9NYkscAsDFS5RjPW6Da in 60s, re-fetching (MempoolWrapper)
+2026-05-11T09:40:06.697924Z  WARN arx::program: arx/src/program.rs:369: No update for account 9EDLm5KDKc1Pf8m587kdxPMvQBNETNahcCfHLNcQ1M8W in 60s, re-fetching (ExecpoolWrapper)
+2026-05-11T09:40:06.707371Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:92: Received mempool update for account
+2026-05-11T09:40:06.707683Z DEBUG arx::units::mempool_unit: arx/src/units/mempool_unit.rs:122: Mempool contains the same computations, skipping update
+2026-05-11T09:40:06.707696Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:95: Received execpool update with 0 computations
+2026-05-11T09:40:06.707732Z DEBUG arx::units::execpool_unit: arx/src/units/execpool_unit.rs:125: Execpool contains the same computations, skipping update
