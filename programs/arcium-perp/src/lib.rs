@@ -5,7 +5,7 @@ use arcium_anchor::prelude::*;
 use arcium_client::idl::arcium::types::{CircuitSource, OffChainCircuitSource};
 use arcium_macros::circuit_hash;
 use arcium_macros::arcium_program;
-declare_id!("7sm6PJZwQDanL3oK3bXVyvdk8MS3DjP34fTCy7MWfvYa");
+declare_id!("76C52sp1b4MbXW6H64H3zDXqaHbGqfT915NVcUm6oZXn");
 
 const COMP_DEF_OFFSET_ENCRYPT_POSITION: u32 = comp_def_offset("encrypt_position");
 const COMP_DEF_OFFSET_COMPUTE_LIQUIDATION: u32 = comp_def_offset("compute_liquidation");
@@ -136,7 +136,7 @@ pub mod arcium_perp {
 
     pub fn init_encrypt_position_comp_def(ctx: Context<InitEncryptPositionCompDef>) -> Result<()> {
         init_comp_def(ctx.accounts, Some(CircuitSource::OffChain(OffChainCircuitSource {
-            source: "http://tmpfiles.org/dl/37662142/encrypt_position.arcis".to_string(),
+            source: "https://dtxeqzmrhgsszpleyqin.supabase.co/storage/v1/object/public/circuits/encrypt_position.arcis".to_string(),
             hash: circuit_hash!("encrypt_position"),
         })), None)?;
         Ok(())
@@ -144,7 +144,7 @@ pub mod arcium_perp {
 
     pub fn init_compute_liquidation_comp_def(ctx: Context<InitComputeLiquidationCompDef>) -> Result<()> {
         init_comp_def(ctx.accounts, Some(CircuitSource::OffChain(OffChainCircuitSource {
-            source: "http://tmpfiles.org/dl/37662150/compute_liquidation.arcis".to_string(),
+            source: "https://dtxeqzmrhgsszpleyqin.supabase.co/storage/v1/object/public/circuits/compute_liquidation.arcis".to_string(),
             hash: circuit_hash!("compute_liquidation"),
         })), None)?;
         Ok(())
@@ -152,7 +152,7 @@ pub mod arcium_perp {
 
     pub fn init_compute_pnl_comp_def(ctx: Context<InitComputePnlCompDef>) -> Result<()> {
         init_comp_def(ctx.accounts, Some(CircuitSource::OffChain(OffChainCircuitSource {
-            source: "http://tmpfiles.org/dl/37662153/compute_pnl.arcis".to_string(),
+            source: "https://dtxeqzmrhgsszpleyqin.supabase.co/storage/v1/object/public/circuits/compute_pnl.arcis".to_string(),
             hash: circuit_hash!("compute_pnl"),
         })), None)?;
         Ok(())

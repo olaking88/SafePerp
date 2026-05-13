@@ -25,7 +25,7 @@ import { awaitComputationFinalization } from "@arcium-hq/client";
 // ─── Setup ────────────────────────────────────────────────────────────────────
 
 const programId = new anchor.web3.PublicKey(
-  "7sm6PJZwQDanL3oK3bXVyvdk8MS3DjP34fTCy7MWfvYa"
+  "76C52sp1b4MbXW6H64H3zDXqaHbGqfT915NVcUm6oZXn"
 );
 
 const readKp = (path: string) =>

@@ -98,6 +98,8 @@ const [signPdaAccount] = anchor.web3.PublicKey.findProgramAddressSync(
     signPdaAccount,
     poolAccount:  getFeePoolAccAddress(),
     clockAccount: getClockAccAddress(),
+    systemProgram: anchor.web3.SystemProgram.programId,
+    arciumProgram: new anchor.web3.PublicKey('Arcj82pX7HxYKLR92qvgZUAd7vGS1k4hQvAFcPATFdEQ'),
   };
 }
 
@@ -128,7 +130,15 @@ export async function initAllCompDefs(
         Buffer.from(getCompDefAccOffset(ixPair.name)).readUInt32LE(),
       );
       await (program.methods as any)[ixPair.method]()
-        .accountsPartial({ payer: payer.publicKey, compDefAccount, mxeAccount, addressLookupTable })
+        .accountsPartial({
+        payer: payer.publicKey,
+        compDefAccount,
+        mxeAccount,
+        addressLookupTable,
+        lutProgram: new anchor.web3.PublicKey('AddressLookupTab1e1111111111111111111111111'),
+        arciumProgram: new anchor.web3.PublicKey('Arcj82pX7HxYKLR92qvgZUAd7vGS1k4hQvAFcPATFdEQ'),
+        systemProgram: anchor.web3.SystemProgram.programId,
+      })
         .signers([payer])
         .rpc({ commitment: "confirmed" });
       console.log(`[arcium] CompDef '${ixPair.name}' initialised`);
@@ -136,6 +146,8 @@ export async function initAllCompDefs(
       const msg = e instanceof Error ? e.message : String(e);
       if (msg.includes("already in use")) {
         console.log(`[arcium] CompDef '${ixPair.name}' already exists — skipping`);
+      } else if (msg.includes("custom program error")) {
+        console.log(`[arcium] CompDef '${ixPair.name}' error: ${msg} — skipping`);
       } else {
         throw e;
       }
