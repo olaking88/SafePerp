@@ -35,6 +35,7 @@ type SubmitState = "idle" | "loading" | "success";
 export function TradeForm() {
   const {
     walletConnected,
+    walletAddress,
     connectWallet,
     addToast,
     marketData,
@@ -92,8 +93,9 @@ export function TradeForm() {
         (entryPrice * (1 + liqOffset)).toFixed(2),
       );
 
-   const position = {
+const position = {
   id: Date.now(),
+  walletAddress,
   market: form.market,
   side: form.side,
   orderType: form.orderType,

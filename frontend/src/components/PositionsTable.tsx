@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useQuery, useMutation, useAuth } from "@animaapp/playground-react-sdk";
 import { useApp } from "../context/AppContext";
 import { Position } from "../types";
 import { Button } from "@/components/ui/button";
@@ -27,11 +26,15 @@ function PrivateValue({ children, isOwner, fallback = "••••••" }: { 
     </span>
   );
 }
-
-function LivePnL({ position, isOwner }: { position: Position; isOwner: boolean }) {
+function LivePnL({
+  position,
+  isOwner,
+}: {
+  position: Position;
+  isOwner: boolean;
+}) {
   const [livePnl, setLivePnl] = useState<number>(position.pnl ?? 0);
   const { marketData } = useApp();
-  const { update: updatePosition } = useMutation("Position");
 
   useEffect(() => {
     if (!isOwner || position.status !== "open") return;
@@ -75,54 +78,64 @@ function LivePnL({ position, isOwner }: { position: Position; isOwner: boolean }
 }
 
 function PositionCard({ position, isOwner }: { position: Position; isOwner: boolean }) {
-  const { update: updatePosition, remove: removePosition, isPending } = useMutation("Position");
-  const { data: statsArr } = useQuery("TradingStats");
-  const { update: updateStats } = useMutation("TradingStats");
+  const isPending = false;
   const { addToast } = useApp();
   const [toggling, setToggling] = useState(false);
   const isLong = position.side === "Long";
 
-  const handleClose = async () => {
-    if (!isOwner) return;
-    try {
-      const stats = statsArr?.[0];
-      const pnlVal = position.pnl ?? 0;
-      const positions = JSON.parse(
-  localStorage.getItem("positions") || "[]"
-);
+const handleClose = async () => {
+  if (!isOwner) return;
 
-const updated = positions.map((p: any) =>
-  p.id === position.id
-    ? { ...p, status: "closed" }
-    : p
-);
+  try {
+    const positions = JSON.parse(
+      localStorage.getItem("positions") || "[]"
+    );
 
-localStorage.setItem(
-  "positions",
-  JSON.stringify(updated)
-);
-      if (stats) {
-        const wins = stats.winningTrades + (pnlVal > 0 ? 1 : 0);
-        const losses = stats.losingTrades + (pnlVal <= 0 ? 1 : 0);
-        const total = wins + losses;
-        await updateStats(stats.id, {
-          netPnl: parseFloat((stats.netPnl + pnlVal).toFixed(2)),
-          winningTrades: wins,
-          losingTrades: losses,
-          winRate: total > 0 ? parseFloat(((wins / total) * 100).toFixed(1)) : 0,
-        });
-      }
-      addToast({ type: "success", title: "Position Closed", message: "Your position has been closed successfully." });
-    } catch {
-      addToast({ type: "error", title: "Failed to Close", message: "Please try again." });
-    }
-  };
+    const updated = positions.map((p: any) =>
+      p.id === position.id
+        ? { ...p, status: "closed" }
+        : p
+    );
+
+    localStorage.setItem(
+      "positions",
+      JSON.stringify(updated)
+    );
+
+    addToast({
+      type: "success",
+      title: "Position Closed",
+      message: "Your position has been closed successfully."
+    });
+
+
+  } catch (err) {
+    console.error(err);
+
+    addToast({
+      type: "error",
+      title: "Failed to Close",
+      message: "Please try again."
+    });
+  }
+};
 
   const handleToggleReveal = async () => {
     if (!isOwner) return;
     setToggling(true);
     try {
-      await updatePosition(position.id, { pnlRevealed: !position.pnlRevealed });
+     const positions = JSON.parse(
+  localStorage.getItem("positions") || "[]"
+);
+
+const updated = positions.map((p: any) =>
+  p.id === position.id
+    ? { ...p, pnlRevealed: !p.pnlRevealed }
+    : p
+);
+
+localStorage.setItem("positions", JSON.stringify(updated));
+
     } finally {
       setToggling(false);
     }
@@ -195,45 +208,66 @@ localStorage.setItem(
 }
 
 function PositionRow({ position, isOwner, isLast }: { position: Position; isOwner: boolean; isLast: boolean }) {
-  const { update: updatePosition, isPending } = useMutation("Position");
-  const { data: statsArr } = useQuery("TradingStats");
-  const { update: updateStats } = useMutation("TradingStats");
+ const isPending = false;
   const { addToast } = useApp();
   const [toggling, setToggling] = useState(false);
   const isLong = position.side === "Long";
 
-  const handleClose = async () => {
-    if (!isOwner) return;
-    try {
-      const stats = statsArr?.[0];
-      const pnlVal = position.pnl ?? 0;
-      await updatePosition(position.id, { status: "closed" });
-      if (stats) {
-        const wins = stats.winningTrades + (pnlVal > 0 ? 1 : 0);
-        const losses = stats.losingTrades + (pnlVal <= 0 ? 1 : 0);
-        const total = wins + losses;
-        await updateStats(stats.id, {
-          netPnl: parseFloat((stats.netPnl + pnlVal).toFixed(2)),
-          winningTrades: wins,
-          losingTrades: losses,
-          winRate: total > 0 ? parseFloat(((wins / total) * 100).toFixed(1)) : 0,
-        });
-      }
-      addToast({ type: "success", title: "Position Closed", message: "Position closed successfully." });
-    } catch {
-      addToast({ type: "error", title: "Failed to Close", message: "Please try again." });
-    }
-  };
+const handleClose = async () => {
+  if (!isOwner) return;
 
-  const handleToggleReveal = async () => {
-    if (!isOwner) return;
-    setToggling(true);
-    try {
-      await updatePosition(position.id, { pnlRevealed: !position.pnlRevealed });
-    } finally {
-      setToggling(false);
-    }
-  };
+  try {
+    const positions = JSON.parse(
+      localStorage.getItem("positions") || "[]"
+    );
+
+    const updated = positions.map((p: any) =>
+      p.id === position.id
+        ? { ...p, status: "closed" }
+        : p
+    );
+
+    localStorage.setItem("positions", JSON.stringify(updated));
+
+    addToast({
+      type: "success",
+      title: "Position Closed",
+      message: "Position closed successfully."
+    });
+
+  } catch (err) {
+    console.error(err);
+
+    addToast({
+      type: "error",
+      title: "Failed to Close",
+      message: "Please try again."
+    });
+  }
+};
+
+const handleToggleReveal = async () => {
+  if (!isOwner) return;
+
+  setToggling(true);
+
+  try {
+    const positions = JSON.parse(
+      localStorage.getItem("positions") || "[]"
+    );
+
+    const updated = positions.map((p: any) =>
+      p.id === position.id
+        ? { ...p, pnlRevealed: !p.pnlRevealed }
+        : p
+    );
+
+    localStorage.setItem("positions", JSON.stringify(updated));
+
+  } finally {
+    setToggling(false);
+  }
+};
 
   return (
     <tr className={`hover:bg-white/[0.02] transition-colors ${!isLast ? "border-b border-border" : ""}`}>
@@ -285,10 +319,10 @@ function PositionRow({ position, isOwner, isLast }: { position: Position; isOwne
 }
 
 export function PositionsTable() {
-const { walletAddress } = useApp();
+const { walletAddress = "" } = useApp();
 
-const storedPositions = JSON.parse(
-  localStorage.getItem("positions") || "[]"
+const [storedPositions, setStoredPositions] = useState(
+  JSON.parse(localStorage.getItem("positions") || "[]")
 );
 
 const openPositions = storedPositions.filter(

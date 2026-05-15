@@ -244,7 +244,10 @@ pub fn arcium_encrypt_position(
             vec![ComputeLiquidationCallback::callback_ix(
                 computation_offset,
                 &ctx.accounts.mxe_account,
-                &[],
+                &[arcium_client::idl::arcium::types::CallbackAccount {
+                    pubkey: ctx.accounts.position.key(),
+                    is_writable: true,
+                }],
             )?],
             1,
             0,

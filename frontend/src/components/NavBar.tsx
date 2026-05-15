@@ -98,7 +98,7 @@ export function NavBar() {
             />
           </div>
           <span className="font-heading font-semibold text-lg text-foreground tracking-heading hidden sm:block">
-            Arc<span className="gradient-text">Perp</span>
+            Safe<span className="gradient-text">Perp</span>
           </span>
         </div>
 
