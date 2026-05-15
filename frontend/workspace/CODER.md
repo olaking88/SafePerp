@@ -20,15 +20,6 @@ Keep entries sorted in DESC order (newest first) so recent knowledge stays in pr
 - `PositionAccount` gained 3 new `[u8;32]` fields: `enc_collateral`, `enc_entry_price`, `enc_liquidation_price`
 - Test BN fix: `import BN from "bn.js"` (default import, NOT named from @coral-xyz/anchor)
 
-## SDK Patterns (2026-04-17)
-- SDK: `@animaapp/playground-react-sdk` 0.10.0, `AnimaProvider` wraps root in `index.tsx`
-- Entity names (PascalCase): `Position`, `WalletBalance`, `TradingStats`
-- `createdByUserId` on each entity — compare with `user.id` from `useAuth()` for owner checks
-- AppContext only holds UI state: tabs, toasts, wallet mock connection, market prices, modals
-- Positions carry: market, side, orderType, leverage, amount, entryPrice, liquidationPrice, pnl, pnlRevealed, status
-- LivePnL computed client-side from marketData price diff — not yet persisted on every tick (perf)
-- WalletBalance: { usdc, protocol } — first deposit creates record, subsequent calls update
-- TradingStats record: created on first trade, updated on subsequent open/close
 
 ## Project Structure
 - `src/context/AppContext.tsx` — UI-only context (no data state)
