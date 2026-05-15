@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-background: hsl(220, 24%, 8%);
+  --color-foreground: hsl(0, 0%, 98%);
+  --color-border: hsl(220, 12%, 18%);
+  --color-input: hsl(220, 18%, 12%);
+  --color-ring: hsl(192, 92%, 60%);
+  --color-primary: hsl(250, 66%, 60%);
+  --color-primary-foreground: hsl(0, 0%, 100%);
+  --color-secondary: hsl(250, 66%, 40%);
+  --color-secondary-foreground: hsl(0, 0%, 100%);
+  --color-accent: hsl(192, 92%, 55%);
+  --color-accent-foreground: hsl(0, 0%, 100%);
+  --color-muted: hsl(220, 18%, 12%);
+  --color-muted-foreground: hsl(220, 9%, 45%);
+  --color-card: hsl(220, 18%, 12%);
+  --color-card-foreground: hsl(0, 0%, 98%);
+  --color-success: hsl(152, 65%, 45%);
+  --color-error: hsl(0, 80%, 60%);
+  --color-warning: hsl(40, 90%, 55%);
+  --color-info: hsl(210, 90%, 60%);
+  --font-sans: 'DM Sans', sans-serif;
+  --font-heading: 'Space Grotesk', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+  --radius: 8px;
+}
+
+html, body {
+  background-color: hsl(220, 24%, 8%);
+  color: hsl(0, 0%, 98%);
+  font-family: 'DM Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+:focus-visible {
+  outline: 2px solid hsl(192, 92%, 60%);
+  outline-offset: 2px;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: hsl(220, 24%, 8%);
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(220, 12%, 18%);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(220, 10%, 25%);
+}
+
+/* Gradient text utility */
+.gradient-text {
+  background: linear-gradient(135deg, hsl(250, 66%, 55%) 0%, hsl(192, 92%, 55%) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glass panel */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+/* Glow effects */
+.glow-green {
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.25);
+}
+.glow-accent {
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.25);
+}
+
+/* Animated gradient border */
+@keyframes borderGlow {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+.animated-border {
+  animation: borderGlow 2s ease-in-out infinite;
+}
