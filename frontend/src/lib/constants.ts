@@ -6,7 +6,7 @@
  */
 
 /** Deployed arcium-perp program ID on Solana devnet */
-export const PROGRAM_ID = "6XdYgQbf4s5WRLe3DQFobCMGTsREjDW1LQPrA6NHSUBp";
+export const PROGRAM_ID = "76C52sp1b4MbXW6H64H3zDXqaHbGqfT915NVcUm6oZXn";
 
 /**
  * USDC token mint on devnet (custom SafePerp mint).

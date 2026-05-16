@@ -79,44 +79,30 @@ function LivePnL({
 
 function PositionCard({ position, isOwner }: { position: Position; isOwner: boolean }) {
   const isPending = false;
-  const { addToast } = useApp();
+  const { addToast, marketData } = useApp();
   const [toggling, setToggling] = useState(false);
   const isLong = position.side === "Long";
 
 const handleClose = async () => {
   if (!isOwner) return;
-
   try {
-    const positions = JSON.parse(
-      localStorage.getItem("positions") || "[]"
-    );
-
+    const positions = JSON.parse(localStorage.getItem("positions") || "[]");
+    const marketPrice = marketData?.[position.market as keyof typeof marketData]?.price ?? position.entryPrice;
+    const direction = position.side === "Long" ? 1 : -1;
+    const priceDiff = (marketPrice - position.entryPrice) * direction;
+    const pnl = parseFloat((priceDiff * position.amount).toFixed(2));
     const updated = positions.map((p: any) =>
-      p.id === position.id
-        ? { ...p, status: "closed" }
-        : p
+      p.id === position.id ? { ...p, status: "closed", pnl } : p
     );
-
-    localStorage.setItem(
-      "positions",
-      JSON.stringify(updated)
-    );
-
-    addToast({
-      type: "success",
-      title: "Position Closed",
-      message: "Your position has been closed successfully."
-    });
-
-
+    localStorage.setItem("positions", JSON.stringify(updated));
+    // Return collateral + pnl to protocol balance
+    const stored = parseFloat(localStorage.getItem(`arcperp_protocol_${position.walletAddress}`) ?? "0");
+    const newBalance = Math.max(0, stored + position.amount + pnl);
+    localStorage.setItem(`arcperp_protocol_${position.walletAddress}`, String(newBalance));
+    addToast({ type: "success", title: "Position Closed", message: `PnL: ${pnl >= 0 ? "+" : ""}$${pnl.toFixed(2)}` });
   } catch (err) {
     console.error(err);
-
-    addToast({
-      type: "error",
-      title: "Failed to Close",
-      message: "Please try again."
-    });
+    addToast({ type: "error", title: "Failed to Close", message: "Please try again." });
   }
 };
 
@@ -209,40 +195,28 @@ localStorage.setItem("positions", JSON.stringify(updated));
 
 function PositionRow({ position, isOwner, isLast }: { position: Position; isOwner: boolean; isLast: boolean }) {
  const isPending = false;
-  const { addToast } = useApp();
+  const { addToast, marketData } = useApp();
   const [toggling, setToggling] = useState(false);
   const isLong = position.side === "Long";
 
 const handleClose = async () => {
   if (!isOwner) return;
-
   try {
-    const positions = JSON.parse(
-      localStorage.getItem("positions") || "[]"
-    );
-
+    const positions = JSON.parse(localStorage.getItem("positions") || "[]");
+    const marketPrice = marketData?.[position.market as keyof typeof marketData]?.price ?? position.entryPrice;
+    const direction = position.side === "Long" ? 1 : -1;
+    const pnl = parseFloat(((marketPrice - position.entryPrice) * direction * position.amount).toFixed(2));
     const updated = positions.map((p: any) =>
-      p.id === position.id
-        ? { ...p, status: "closed" }
-        : p
+      p.id === position.id ? { ...p, status: "closed", pnl } : p
     );
-
     localStorage.setItem("positions", JSON.stringify(updated));
-
-    addToast({
-      type: "success",
-      title: "Position Closed",
-      message: "Position closed successfully."
-    });
-
+    const stored = parseFloat(localStorage.getItem(`arcperp_protocol_${position.walletAddress}`) ?? "0");
+    const newBalance = Math.max(0, stored + position.amount + pnl);
+    localStorage.setItem(`arcperp_protocol_${position.walletAddress}`, String(newBalance));
+    addToast({ type: "success", title: "Position Closed", message: `PnL: ${pnl >= 0 ? "+" : ""}$${pnl.toFixed(2)}` });
   } catch (err) {
     console.error(err);
-
-    addToast({
-      type: "error",
-      title: "Failed to Close",
-      message: "Please try again."
-    });
+    addToast({ type: "error", title: "Failed to Close", message: "Please try again." });
   }
 };
 
@@ -319,11 +293,19 @@ const handleToggleReveal = async () => {
 }
 
 export function PositionsTable() {
-const { walletAddress = "" } = useApp();
+const { walletAddress = "", setProtocolBalance, protocolBalance } = useApp();
 
 const [storedPositions, setStoredPositions] = useState(
   JSON.parse(localStorage.getItem("positions") || "[]")
 );
+
+// Refresh positions from localStorage every 2 seconds so close/open reflects immediately
+useEffect(() => {
+  const refresh = () => setStoredPositions(JSON.parse(localStorage.getItem("positions") || "[]"));
+  refresh();
+  const interval = setInterval(refresh, 2000);
+  return () => clearInterval(interval);
+}, []);
 
 const openPositions = storedPositions.filter(
   (p: any) =>
