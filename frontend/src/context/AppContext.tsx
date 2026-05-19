@@ -122,6 +122,9 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     ]);
     setSolBalance(sol);
     setUsdcBalance(usdc);
+    // Also refresh protocol balance from localStorage
+    const stored = parseFloat(localStorage.getItem(`arcperp_protocol_${walletAddress}`) ?? "0");
+    setProtocolBalanceState(stored);
   }, [walletAddress]);
 
   // Auto-refresh balances every 15s while connected

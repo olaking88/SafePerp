@@ -2,10 +2,19 @@ import react from "@vitejs/plugin-react";
 import tailwind from "tailwindcss";
 import { defineConfig } from "vite";
 import path from "path";
+import { nodePolyfills } from "vite-plugin-node-polyfills";
 
-// https://vite.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    nodePolyfills({
+      include: ["buffer", "process", "util", "stream"],
+      globals: {
+        Buffer: true,
+        process: true,
+      },
+    }),
+  ],
   publicDir: "./static",
   base: "./",
   css: {

@@ -40,13 +40,12 @@ function LivePnL({
     if (!isOwner || position.status !== "open") return;
     const interval = setInterval(() => {
       const marketPrice = marketData[position.market as keyof typeof marketData]?.price;
-      if (!marketPrice) return;
+      if (!marketPrice || !position.entryPrice) return;
       const direction = position.side === "Long" ? 1 : -1;
-      const priceDiff = (marketPrice - position.entryPrice) * direction;
-      const rawPnl = priceDiff * position.amount;
+      const priceDiffPct = (marketPrice - position.entryPrice) / position.entryPrice;
+      const rawPnl = priceDiffPct * position.amount * position.leverage * direction;
       const newPnl = parseFloat(rawPnl.toFixed(2));
       setLivePnl(newPnl);
-      // Persist PnL update to SDK every ~10s to avoid spam
     }, 2000);
     return () => clearInterval(interval);
   }, [isOwner, position, marketData]);
@@ -79,7 +78,7 @@ function LivePnL({
 
 function PositionCard({ position, isOwner }: { position: Position; isOwner: boolean }) {
   const isPending = false;
-  const { addToast, marketData } = useApp();
+  const { addToast, marketData, setProtocolBalance } = useApp();
   const [toggling, setToggling] = useState(false);
   const isLong = position.side === "Long";
 
@@ -89,8 +88,8 @@ const handleClose = async () => {
     const positions = JSON.parse(localStorage.getItem("positions") || "[]");
     const marketPrice = marketData?.[position.market as keyof typeof marketData]?.price ?? position.entryPrice;
     const direction = position.side === "Long" ? 1 : -1;
-    const priceDiff = (marketPrice - position.entryPrice) * direction;
-    const pnl = parseFloat((priceDiff * position.amount).toFixed(2));
+    const priceDiffPct = (marketPrice - position.entryPrice) / position.entryPrice;
+    const pnl = parseFloat((priceDiffPct * position.amount * position.leverage * direction).toFixed(2));
     const updated = positions.map((p: any) =>
       p.id === position.id ? { ...p, status: "closed", pnl } : p
     );
@@ -99,6 +98,7 @@ const handleClose = async () => {
     const stored = parseFloat(localStorage.getItem(`arcperp_protocol_${position.walletAddress}`) ?? "0");
     const newBalance = Math.max(0, stored + position.amount + pnl);
     localStorage.setItem(`arcperp_protocol_${position.walletAddress}`, String(newBalance));
+    setProtocolBalance(newBalance);
     addToast({ type: "success", title: "Position Closed", message: `PnL: ${pnl >= 0 ? "+" : ""}$${pnl.toFixed(2)}` });
   } catch (err) {
     console.error(err);
@@ -195,7 +195,7 @@ localStorage.setItem("positions", JSON.stringify(updated));
 
 function PositionRow({ position, isOwner, isLast }: { position: Position; isOwner: boolean; isLast: boolean }) {
  const isPending = false;
-  const { addToast, marketData } = useApp();
+  const { addToast, marketData, setProtocolBalance } = useApp();
   const [toggling, setToggling] = useState(false);
   const isLong = position.side === "Long";
 
@@ -205,7 +205,8 @@ const handleClose = async () => {
     const positions = JSON.parse(localStorage.getItem("positions") || "[]");
     const marketPrice = marketData?.[position.market as keyof typeof marketData]?.price ?? position.entryPrice;
     const direction = position.side === "Long" ? 1 : -1;
-    const pnl = parseFloat(((marketPrice - position.entryPrice) * direction * position.amount).toFixed(2));
+    const priceDiffPct = (marketPrice - position.entryPrice) / position.entryPrice;
+    const pnl = parseFloat((priceDiffPct * position.amount * position.leverage * direction).toFixed(2));
     const updated = positions.map((p: any) =>
       p.id === position.id ? { ...p, status: "closed", pnl } : p
     );
@@ -213,6 +214,7 @@ const handleClose = async () => {
     const stored = parseFloat(localStorage.getItem(`arcperp_protocol_${position.walletAddress}`) ?? "0");
     const newBalance = Math.max(0, stored + position.amount + pnl);
     localStorage.setItem(`arcperp_protocol_${position.walletAddress}`, String(newBalance));
+    setProtocolBalance(newBalance);
     addToast({ type: "success", title: "Position Closed", message: `PnL: ${pnl >= 0 ? "+" : ""}$${pnl.toFixed(2)}` });
   } catch (err) {
     console.error(err);

@@ -267,9 +267,11 @@ async function resolveATA(
       return { ataAddress: accounts[0].pubkey as string, exists: true };
     }
   } catch {}
-  // No existing account — derive canonical ATA address
+  // No existing account — derive canonical ATA address using on-chain program
+  // Use getAccountInfo to verify the derived address
   const derived = await deriveATA(ownerB58, mintB58);
-  return { ataAddress: derived, exists: false };
+  const exists = await accountExists(derived);
+  return { ataAddress: derived, exists };
 }
 
 // ── Balance fetches ───────────────────────────────────────────────────────────
@@ -393,7 +395,7 @@ function buildCreateATAIdempotent(
       { pubkey: b58dec(TOKEN_PROGRAM_ID), isSigner: false, isWritable: false },
     ],
     programId: b58dec(ATA_PROGRAM_ID),
-    data: new Uint8Array([0x01]), // CreateIdempotent
+    data: new Uint8Array([0x00]), // Create (not idempotent - works on all versions)
   };
 }
 
@@ -975,6 +977,14 @@ export async function runFaucet(
     await new Promise((r) => setTimeout(r, 3000));
   }
 
+  // Ensure new wallet has SOL (needed for account rent even if mint authority pays)
+  const walletSol = await getSolBalance(walletAddress);
+  if (walletSol < 0.001) {
+    console.log(`__ANIMA_DBG__ runFaucet: new wallet needs SOL, airdropping...`);
+    await airdropSol(walletAddress, 1_000_000_000);
+    await new Promise(r => setTimeout(r, 4000));
+  }
+
   try {
     // Step 2 — load mint authority keypair
     const mintAuthority = nacl.sign.keyPair.fromSecretKey(
@@ -991,59 +1001,39 @@ export async function runFaucet(
       `__ANIMA_DBG__ runFaucet: active mint=${mintAddress.slice(0, 8)}…`,
     );
 
-    // Step 4 — resolve user's ATA (queries chain first, falls back to derivation)
-    const { ataAddress: destAtaB58, exists: ataAlreadyExists } =
-      await resolveATA(walletAddress, mintAddress);
-    console.log(
-      `__ANIMA_DBG__ runFaucet: userATA=${destAtaB58.slice(0, 8)}… exists=${ataAlreadyExists}`,
+    // Step 4 — use @solana/spl-token to create ATA and mint
+    const { Connection, Keypair, PublicKey } = await import("@solana/web3.js");
+    const splToken = await import("@solana/spl-token");
+    
+    const connection = new Connection(DEVNET_RPC, "confirmed");
+    const authorityKeypair = Keypair.fromSecretKey(mintAuthority.secretKey);
+    const mintPubkey = new PublicKey(mintAddress);
+    const walletPubkey = new PublicKey(walletAddress);
+    
+    console.log(`__ANIMA_DBG__ runFaucet: using spl-token to get/create ATA`);
+    
+    // Get or create ATA using official spl-token library
+    const destAta = await splToken.getOrCreateAssociatedTokenAccount(
+      connection,
+      authorityKeypair,
+      mintPubkey,
+      walletPubkey,
     );
-
-    // Step 5 — get recent blockhash
-    const bhResult = await rpc<{ value: { blockhash: string } }>(
-      "getLatestBlockhash",
-      [{ commitment: "confirmed" }],
+    
+    const destAtaB58 = destAta.address.toString();
+    console.log(`__ANIMA_DBG__ runFaucet: userATA=${destAtaB58.slice(0, 8)}… created`);
+    
+    const rawAmount = BigInt(Math.floor(requestedAmount * Math.pow(10, TOKEN_DECIMALS)));
+    
+    // Mint tokens using official spl-token library
+    const sig = await splToken.mintTo(
+      connection,
+      authorityKeypair,
+      mintPubkey,
+      destAta.address,
+      authorityKeypair,
+      rawAmount,
     );
-    const recentBlockhash = bhResult.value.blockhash;
-
-    // Step 6 — compute raw amount with 6 decimals
-    const rawAmount = BigInt(
-      Math.floor(requestedAmount * Math.pow(10, TOKEN_DECIMALS)),
-    );
-
-    // Step 7 — optionally create user ATA, then MintTo
-    const instructions: SolIx[] = [];
-    await appendCreateTokenAccountIxs(
-      instructions,
-      mintAuthority.publicKey,
-      destAtaB58,
-      b58dec(walletAddress),
-      b58dec(mintAddress),
-      ataAlreadyExists,
-    );
-    instructions.push(
-      buildMintTo(mintAddress, destAtaB58, authorityB58, rawAmount),
-    );
-    console.log(
-      `__ANIMA_DBG__ runFaucet: instructions=${instructions.length} (ATA created=${!ataAlreadyExists})`,
-    );
-
-    // Step 8 — serialize, sign with mint authority, send
-    const txBytes = serializeTransaction(
-      instructions,
-      [mintAuthority],
-      recentBlockhash,
-      mintAuthority.publicKey,
-    );
-
-    const base64Tx = btoa(String.fromCharCode(...txBytes));
-    const sig = await rpc<string>("sendTransaction", [
-      base64Tx,
-      {
-        encoding: "base64",
-        skipPreflight: true,
-        preflightCommitment: "confirmed",
-      },
-    ]);
     console.log(
       `__ANIMA_DBG__ runFaucet: tx submitted sig=${sig.slice(0, 12)}…`,
     );
