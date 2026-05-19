@@ -33,19 +33,24 @@ function LivePnL({
   position: Position;
   isOwner: boolean;
 }) {
-  const [livePnl, setLivePnl] = useState<number>(position.pnl ?? 0);
   const { marketData } = useApp();
+
+  const calcPnl = () => {
+    const marketPrice = marketData?.[position.market as keyof typeof marketData]?.price;
+    if (!marketPrice || !position.entryPrice) return position.pnl ?? 0;
+    const direction = position.side === "Long" ? 1 : -1;
+    const priceDiffPct = (marketPrice - position.entryPrice) / position.entryPrice;
+    return parseFloat((priceDiffPct * position.amount * position.leverage * direction).toFixed(2));
+  };
+
+  const [livePnl, setLivePnl] = useState<number>(calcPnl);
 
   useEffect(() => {
     if (!isOwner || position.status !== "open") return;
+    // Recalculate immediately when marketData changes
+    setLivePnl(calcPnl());
     const interval = setInterval(() => {
-      const marketPrice = marketData[position.market as keyof typeof marketData]?.price;
-      if (!marketPrice || !position.entryPrice) return;
-      const direction = position.side === "Long" ? 1 : -1;
-      const priceDiffPct = (marketPrice - position.entryPrice) / position.entryPrice;
-      const rawPnl = priceDiffPct * position.amount * position.leverage * direction;
-      const newPnl = parseFloat(rawPnl.toFixed(2));
-      setLivePnl(newPnl);
+      setLivePnl(calcPnl());
     }, 2000);
     return () => clearInterval(interval);
   }, [isOwner, position, marketData]);
