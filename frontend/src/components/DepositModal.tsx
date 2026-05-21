@@ -171,7 +171,7 @@ export function DepositModal() {
         });
       } else {
         // Real on-chain withdrawal: vault ATA → user wallet ATA (authority-signed)
-        const result = await withdrawFromVault(walletAddress!, parsed);
+        const result = await withdrawFromVault(walletAddress!, parsed, walletProvider);
         if (!result.success) {
           addToast({
             type: "error",

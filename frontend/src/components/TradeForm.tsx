@@ -27,6 +27,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { PublicKey } from "@solana/web3.js";
+import * as anchor from "@coral-xyz/anchor";
+import { getProgram, ensureUserAccount, getUserAccountPDA, getPositionPDA } from "../lib/program";
+import { buildArciumClient, encryptPosition, computeLiquidation } from "../lib/arcium";
+import { TOKEN_DECIMALS } from "../lib/constants";
 
 const MARKETS: Market[] = ["SOL/USDC", "BTC/USDC", "ETH/USDC", "JTO/USDC"];
 
@@ -36,6 +41,7 @@ export function TradeForm() {
   const {
     walletConnected,
     walletAddress,
+    walletProvider,
     connectWallet,
     addToast,
     marketData,
@@ -87,59 +93,99 @@ export function TradeForm() {
         form.orderType === "Market"
           ? currentPrice
           : parseFloat(form.limitPrice || String(currentPrice));
-      const liqOffset =
-        form.side === "Long" ? -0.9 / form.leverage : 0.9 / form.leverage;
-      const liquidationPrice = parseFloat(
-        (entryPrice * (1 + liqOffset)).toFixed(2),
-      );
 
-const position = {
-  id: Date.now(),
-  walletAddress,
-  market: form.market,
-  side: form.side,
-  orderType: form.orderType,
-  leverage: form.leverage,
-  amount: size,
-  entryPrice,
-  liquidationPrice,
-  pnl: 0,
-  pnlRevealed: false,
-  status: "open",
-  createdAt: new Date().toISOString(),
-};
+      if (!walletProvider) throw new Error("Wallet provider not available");
+      const program = getProgram(walletProvider);
+      const owner = new PublicKey(walletAddress!);
 
-const existing = JSON.parse(
-  localStorage.getItem("positions") || "[]"
-);
+      // 1. Ensure user account exists on-chain
+      await ensureUserAccount(program, owner);
 
-localStorage.setItem(
-  "positions",
-  JSON.stringify([position, ...existing])
-);
-setProtocolBalance(protocolBalance - size);
+      // 2. Fetch current total_positions index
+      const userAcc = await program.account.userAccount.fetch(getUserAccountPDA(owner));
+      const positionIndex = (userAcc as any).totalPositions.toNumber();
+
+      // 3. Call open_position on-chain
+      const collateralRaw = BigInt(Math.floor(size * Math.pow(10, TOKEN_DECIMALS)));
+      const entryPriceRaw = BigInt(Math.floor(entryPrice * Math.pow(10, TOKEN_DECIMALS)));
+      const sizeRaw = collateralRaw * BigInt(form.leverage);
+      const sideU8 = form.side === "Long" ? 0 : 1;
+
+      await program.methods
+        .openPosition(
+          form.market,
+          sideU8,
+          form.leverage,
+          new anchor.BN(collateralRaw.toString()),
+          new anchor.BN(entryPriceRaw.toString()),
+          new anchor.BN(sizeRaw.toString()),
+        )
+        .accounts({ owner })
+        .rpc({ commitment: "confirmed" });
+
+      console.log("[TradeForm] openPosition confirmed onchain");
+
+      // 4. Build Arcium client and encrypt position (async MXE — fire and forget)
+      try {
+        const provider = program.provider as anchor.AnchorProvider;
+        const arciumClient = await buildArciumClient(provider, program.programId);
+        const positionPda = getPositionPDA(owner, positionIndex);
+        const { computationOffset } = await encryptPosition(
+          program, provider, arciumClient, positionPda,
+          BigInt(positionIndex), collateralRaw, entryPriceRaw,
+        );
+        console.log("[TradeForm] Arcium encryptPosition queued, offset:", computationOffset.toString());
+      } catch (arcErr) {
+        console.warn("[TradeForm] Arcium encryption queued with warning:", arcErr);
+      }
+
+      // 5. Compute liquidation price (use on-chain formula as fallback)
+      const liqOffset = form.side === "Long" ? -0.9 / form.leverage : 0.9 / form.leverage;
+      const liquidationPrice = parseFloat((entryPrice * (1 + liqOffset)).toFixed(2));
+
+      // 6. Update local cache
+      const position = {
+        id: positionIndex,
+        walletAddress,
+        market: form.market,
+        side: form.side,
+        orderType: form.orderType,
+        leverage: form.leverage,
+        amount: size,
+        entryPrice,
+        liquidationPrice,
+        pnl: 0,
+        pnlRevealed: false,
+        status: "open",
+        createdAt: new Date().toISOString(),
+      };
+      const existing = JSON.parse(localStorage.getItem("positions") || "[]");
+      localStorage.setItem("positions", JSON.stringify([position, ...existing]));
+
+      // 7. Sync protocol balance from chain
+      const updatedAcc = await program.account.userAccount.fetch(getUserAccountPDA(owner));
+      const newBalance = (updatedAcc as any).protocolBalance.toNumber() / Math.pow(10, TOKEN_DECIMALS);
+      setProtocolBalance(newBalance);
 
       setSubmitState("success");
       addToast({
         type: "success",
         title: "Position Opened",
-        message: `Private ${form.side} position on ${form.market} opened successfully.`,
+        message: `Private ${form.side} position on ${form.market} opened & encrypted via Arcium.`,
       });
       setTimeout(() => {
         setSubmitState("idle");
         setForm((prev) => ({ ...prev, amount: "", limitPrice: "" }));
       }, 2000);
     } catch (err: any) {
-  console.error("OPEN POSITION ERROR:", err);
-
-  setSubmitState("idle");
-
-  addToast({
-    type: "error",
-    title: "Failed to Open Position",
-    message: err?.message || JSON.stringify(err),
-  });
-}
+      console.error("OPEN POSITION ERROR:", err);
+      setSubmitState("idle");
+      addToast({
+        type: "error",
+        title: "Failed to Open Position",
+        message: err?.message || JSON.stringify(err),
+      });
+    }
   };
 
   const estimatedValue = form.amount

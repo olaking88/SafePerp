@@ -23,11 +23,11 @@ import {
   getExecutingPoolAccAddress,
   getMempoolAccAddress,
   getMXEAccAddress,
-  getMXEPublicKeyWithRetry,
+  getMXEPublicKey,
   awaitComputationFinalization,
 } from "@arcium-hq/client";
-import { deserializeLE, RescueCipher, x25519 } from "@arcium-hq/mpc-sdk";
-import { randomBytes } from "crypto";
+import { deserializeLE, RescueCipher, x25519 } from "@arcium-hq/client";
+import { randomBytes } from "@noble/hashes/utils";
 import type { Program } from "@coral-xyz/anchor";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
@@ -86,10 +86,10 @@ export async function buildArciumClient(
   provider: anchor.AnchorProvider,
   programId: anchor.web3.PublicKey,
 ): Promise<ArciumClient> {
-  const env        = getArciumEnv();
+  const env = { arciumClusterOffset: 456, arciumBackupClusterOffset: NaN };
   const privateKey = x25519.utils.randomSecretKey();
   const publicKey  = x25519.getPublicKey(privateKey);
-  const mxePub     = await getMXEPublicKeyWithRetry(provider, programId);
+  const mxePub = await getMXEPublicKey(provider, programId);
   const shared     = x25519.getSharedSecret(privateKey, mxePub);
   const cipher     = new RescueCipher(shared);
 
@@ -196,11 +196,11 @@ export async function encryptPosition(
   entryPrice: bigint,
 ): Promise<{ computationOffset: anchor.BN; txSig: string }> {
   const nonce      = randomBytes(16);
-  const nonceBN    = new anchor.BN(deserializeLE(nonce).toString());
+  const nonceBN    = new anchor.BN(deserializeLE(Buffer.from(nonce)).toString());
   const plaintext  = [collateral, entryPrice];
   const ciphertext = client.cipher.encrypt(plaintext, nonce);
 
-  const computationOffset = new anchor.BN(randomBytes(8), "hex");
+  const computationOffset = new anchor.BN(Buffer.from(randomBytes(8)).toString("hex"), "hex");
 
   const txSig = await program.methods
     .arciumEncryptPosition(
@@ -238,10 +238,10 @@ export async function computeLiquidation(
   side:          number,  // 0 = Long, 1 = Short
 ): Promise<ComputeLiquidationResult> {
   const nonce      = randomBytes(16);
-  const nonceBN    = new anchor.BN(deserializeLE(nonce).toString());
+  const nonceBN    = new anchor.BN(deserializeLE(Buffer.from(nonce)).toString());
   const ciphertext = client.cipher.encrypt([entryPrice, BigInt(leverage)], nonce);
 
-  const computationOffset = new anchor.BN(randomBytes(8), "hex");
+  const computationOffset = new anchor.BN(Buffer.from(randomBytes(8)).toString("hex"), "hex");
 
   // Listen for callback event before sending tx
   const eventPromise = awaitProgramEvent<{
@@ -305,7 +305,7 @@ export async function computePnL(
   const nonce   = randomBytes(16);
   const nonceBN = new anchor.BN(deserializeLE(nonce).toString());
 
-  const computationOffset = new anchor.BN(randomBytes(8), "hex");
+  const computationOffset = new anchor.BN(Buffer.from(randomBytes(8)).toString("hex"), "hex");
 
   // Listen for callback event before sending tx
   const eventPromise = awaitProgramEvent<{

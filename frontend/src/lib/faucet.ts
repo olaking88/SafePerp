@@ -1108,153 +1108,41 @@ export async function depositToVault(
   amount: number,
   provider: any,
 ): Promise<DepositResult> {
-  if (
-    !provider?.signTransaction &&
-    !provider?.signAndSendTransaction &&
-    !provider?.request
-  ) {
-    throw new Error("Wallet provider does not support signing transactions");
-  }
+  if (!provider) throw new Error("Wallet provider not available");
 
-  const mintAddress = getActiveMintAddress();
-  console.log(
-    `__ANIMA_DBG__ deposit: mintAddress=${mintAddress.slice(0, 8)}… amount=${amount}`,
+  // Use Anchor program.methods.deposit() so UserAccount.protocol_balance is updated on-chain
+  const { getProgram, ensureUserAccount } = await import("./program");
+  const anchor = await import("@coral-xyz/anchor");
+  const { PublicKey } = await import("@solana/web3.js");
+  const { getAssociatedTokenAddressSync } = await import("@solana/spl-token");
+
+  const program = getProgram(provider);
+  const owner = new PublicKey(walletAddress);
+  const mintPubkey = new PublicKey(getActiveMintAddress());
+
+  // Ensure user account exists
+  await ensureUserAccount(program, owner);
+
+  // Derive ATAs
+  const userTokenAccount = getAssociatedTokenAddressSync(mintPubkey, owner);
+  const [vaultAuthority] = PublicKey.findProgramAddressSync(
+    [Buffer.from("vault_authority")],
+    program.programId,
   );
+  const vaultTokenAccount = getAssociatedTokenAddressSync(mintPubkey, vaultAuthority, true);
 
-  // 1. Resolve user ATA and vault ATA
-  const { ataAddress: userAtaB58, exists: userAtaExists } = await resolveATA(
-    walletAddress,
-    mintAddress,
-  );
-  const { ataAddress: vaultAtaB58, exists: vaultAtaExists } = await resolveATA(
-    VAULT_ADDRESS,
-    mintAddress,
-  );
-  console.log(
-    `__ANIMA_DBG__ deposit: userATA=${userAtaB58.slice(0, 8)}… exists=${userAtaExists} vaultATA=${vaultAtaB58.slice(0, 8)}… exists=${vaultAtaExists}`,
-  );
+  const rawAmount = new anchor.BN(Math.floor(amount * Math.pow(10, TOKEN_DECIMALS)));
 
-  // 2. Get recent blockhash
-  const bhResult = await rpc<{ value: { blockhash: string } }>(
-    "getLatestBlockhash",
-    [{ commitment: "confirmed" }],
-  );
-  const recentBlockhash = bhResult.value.blockhash;
+  const sig = await program.methods
+    .deposit(rawAmount)
+    .accounts({
+      owner,
+      userTokenAccount,
+      vaultTokenAccount,
+    })
+    .rpc({ commitment: "confirmed" });
 
-  // 3. Compute raw amount
-  const rawAmount = BigInt(Math.floor(amount * Math.pow(10, TOKEN_DECIMALS)));
-
-  // 4. Build instructions
-  const userPk = b58dec(walletAddress);
-  const vaultPk = b58dec(VAULT_ADDRESS);
-  const mintPk = b58dec(mintAddress);
-
-  const instructions: SolIx[] = [];
-  // Create vault ATA if needed (user wallet pays)
-  await appendCreateTokenAccountIxs(
-    instructions,
-    userPk,
-    vaultAtaB58,
-    vaultPk,
-    mintPk,
-    vaultAtaExists,
-  );
-  instructions.push(
-    buildTokenTransfer(userAtaB58, vaultAtaB58, walletAddress, rawAmount),
-  );
-  console.log(`__ANIMA_DBG__ deposit: instructions=${instructions.length}`);
-
-  // 5. Build unsigned message bytes
-  const { message } = buildUnsignedMessage(
-    instructions,
-    recentBlockhash,
-    userPk,
-  );
-
-  // 6. Full unsigned legacy tx: [compact-u16 = 1] [64 zero bytes] [message]
-  const fullTxBytes = concat(encodeCompactU16(1), new Uint8Array(64), message);
-  const base58Tx = b58enc(fullTxBytes);
-
-  let sig: string;
-
-  try {
-    if (provider.request) {
-      // Preferred: Phantom/Solflare low-level JSON-RPC bridge — no .serialize() needed
-      const result = await provider.request({
-        method: "signAndSendTransaction",
-        params: { message: base58Tx },
-      });
-      sig =
-        result?.signature ??
-        result?.result?.signature ??
-        result?.result ??
-        result;
-      if (typeof sig !== "string") sig = b58enc(new Uint8Array(sig as any));
-    } else if (provider.signAndSendTransaction) {
-      const result = await provider.signAndSendTransaction(fullTxBytes);
-      sig = result?.signature ?? result?.publicKey ?? result;
-      if (typeof sig !== "string") sig = b58enc(new Uint8Array(sig as any));
-    } else if (provider.signTransaction) {
-      // Last-resort: wrap with .serialize() so Phantom's internal call succeeds
-      const txObj = { serialize: () => fullTxBytes };
-      const signResult = await provider.signTransaction(txObj);
-      const walletSig: Uint8Array =
-        signResult?.signature ??
-        signResult?.signatures?.[0]?.data ??
-        signResult?.signatures?.[0] ??
-        new Uint8Array(64);
-      const signedTxBytes = concat(encodeCompactU16(1), walletSig, message);
-      const base64Signed = btoa(String.fromCharCode(...signedTxBytes));
-      sig = await rpc<string>("sendTransaction", [
-        base64Signed,
-        {
-          encoding: "base64",
-          skipPreflight: false,
-          preflightCommitment: "confirmed",
-        },
-      ]);
-    } else {
-      throw new Error(
-        "Wallet does not support signTransaction or signAndSendTransaction",
-      );
-    }
-    console.log(`__ANIMA_DBG__ deposit: tx submitted sig=${sig.slice(0, 12)}…`);
-  } catch (err: any) {
-    const msg: string = err?.message ?? "User rejected transaction";
-    if (
-      msg.toLowerCase().includes("reject") ||
-      msg.toLowerCase().includes("denied") ||
-      msg.toLowerCase().includes("cancel")
-    ) {
-      return {
-        success: false,
-        signature: null,
-        explorerUrl: null,
-        message: "Transaction cancelled by user.",
-      };
-    }
-    throw err;
-  }
-
-  // 7. Wait for confirmation
-  for (let i = 0; i < 20; i++) {
-    await new Promise((r) => setTimeout(r, 2000));
-    try {
-      const status = await rpc<any>("getSignatureStatuses", [
-        [sig],
-        { searchTransactionHistory: true },
-      ]);
-      const conf = status?.value?.[0]?.confirmationStatus;
-      const err = status?.value?.[0]?.err;
-      if (err) throw new Error(`Tx error: ${JSON.stringify(err)}`);
-      if (conf === "confirmed" || conf === "finalized") {
-        console.log(`__ANIMA_DBG__ deposit: confirmed!`);
-        break;
-      }
-    } catch (e: any) {
-      if (e.message?.startsWith("Tx error")) throw e;
-    }
-  }
+  console.log(`__ANIMA_DBG__ deposit: Anchor tx confirmed sig=${sig.slice(0, 12)}…`);
 
   return {
     success: true,
@@ -1267,82 +1155,44 @@ export async function depositToVault(
 export async function withdrawFromVault(
   walletAddress: string,
   amount: number,
+  provider?: any,
 ): Promise<DepositResult> {
-  const mintAuthority = nacl.sign.keyPair.fromSecretKey(MINT_AUTHORITY_SECRET);
-  const authorityB58 = b58enc(mintAuthority.publicKey);
-  const mintAddress = getActiveMintAddress();
+  if (!provider) throw new Error("Wallet provider required for withdrawal");
 
-  const { ataAddress: userAtaB58, exists: userAtaExists } = await resolveATA(
-    walletAddress,
-    mintAddress,
-  );
-  const { ataAddress: vaultAtaB58, exists: vaultAtaExists } = await resolveATA(
-    VAULT_ADDRESS,
-    mintAddress,
-  );
-  console.log(
-    `__ANIMA_DBG__ withdraw: userATA=${userAtaB58.slice(0, 8)}… vaultATA=${vaultAtaB58.slice(0, 8)}…`,
-  );
+  const { getProgram } = await import("./program");
+  const anchor = await import("@coral-xyz/anchor");
+  const { PublicKey } = await import("@solana/web3.js");
+  const { getAssociatedTokenAddressSync } = await import("@solana/spl-token");
 
-  const bhResult = await rpc<{ value: { blockhash: string } }>(
-    "getLatestBlockhash",
-    [{ commitment: "confirmed" }],
+  const program = getProgram(provider);
+  const owner = new PublicKey(walletAddress);
+  const mintPubkey = new PublicKey(getActiveMintAddress());
+
+  const userTokenAccount = getAssociatedTokenAddressSync(mintPubkey, owner);
+  const [vaultAuthority] = PublicKey.findProgramAddressSync(
+    [Buffer.from("vault_authority")],
+    program.programId,
   );
-  const recentBlockhash = bhResult.value.blockhash;
+  const vaultTokenAccount = getAssociatedTokenAddressSync(mintPubkey, vaultAuthority, true);
 
-  const rawAmount = BigInt(Math.floor(amount * Math.pow(10, TOKEN_DECIMALS)));
+  const rawAmount = new anchor.BN(Math.floor(amount * Math.pow(10, TOKEN_DECIMALS)));
 
-  const instructions: SolIx[] = [];
-  // Ensure user ATA exists before transferring to it
-  await appendCreateTokenAccountIxs(
-    instructions,
-    mintAuthority.publicKey,
-    userAtaB58,
-    b58dec(walletAddress),
-    b58dec(mintAddress),
-    userAtaExists,
-  );
-  instructions.push(
-    buildTokenTransfer(vaultAtaB58, userAtaB58, VAULT_ADDRESS, rawAmount),
-  );
+  const sig = await program.methods
+    .withdraw(rawAmount)
+    .accounts({
+      owner,
+      userTokenAccount,
+      vaultTokenAccount,
+    })
+    .rpc({ commitment: "confirmed" });
 
-  const txBytes = serializeTransaction(
-    instructions,
-    [mintAuthority],
-    recentBlockhash,
-    mintAuthority.publicKey,
-  );
-
-  const base64Tx = btoa(String.fromCharCode(...txBytes));
-  const sig = await rpc<string>("sendTransaction", [
-    base64Tx,
-    {
-      encoding: "base64",
-      skipPreflight: true,
-      preflightCommitment: "confirmed",
-    },
-  ]);
-
-  for (let i = 0; i < 20; i++) {
-    await new Promise((r) => setTimeout(r, 2000));
-    try {
-      const status = await rpc<any>("getSignatureStatuses", [
-        [sig],
-        { searchTransactionHistory: true },
-      ]);
-      const conf = status?.value?.[0]?.confirmationStatus;
-      const err = status?.value?.[0]?.err;
-      if (err) throw new Error(`Tx error: ${JSON.stringify(err)}`);
-      if (conf === "confirmed" || conf === "finalized") break;
-    } catch (e: any) {
-      if (e.message?.startsWith("Tx error")) throw e;
-    }
-  }
+  console.log(`__ANIMA_DBG__ withdraw: Anchor tx confirmed sig=${sig.slice(0, 12)}…`);
 
   return {
     success: true,
     signature: sig,
     explorerUrl: `https://explorer.solana.com/tx/${sig}?cluster=devnet`,
-    message: `${amount.toLocaleString()} USDC withdrawn from SafePerp vault.`,
+    message: `${amount.toLocaleString()} USDC withdrawn to your wallet.`,
   };
 }
+
