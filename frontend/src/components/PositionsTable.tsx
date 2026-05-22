@@ -83,31 +83,52 @@ function LivePnL({
 
 function PositionCard({ position, isOwner }: { position: Position; isOwner: boolean }) {
   const isPending = false;
-  const { addToast, marketData, setProtocolBalance } = useApp();
+  const { addToast, marketData, setProtocolBalance, walletProvider } = useApp();
   const [toggling, setToggling] = useState(false);
   const isLong = position.side === "Long";
 
 const handleClose = async () => {
   if (!isOwner) return;
   try {
-    const positions = JSON.parse(localStorage.getItem("positions") || "[]");
+    const { getProgram, getUserAccountPDA } = await import("../lib/program");
+    const { PublicKey } = await import("@solana/web3.js");
+    const anchor = await import("@coral-xyz/anchor");
+    const { TOKEN_DECIMALS } = await import("../lib/constants");
+
     const marketPrice = marketData?.[position.market as keyof typeof marketData]?.price ?? position.entryPrice;
     const direction = position.side === "Long" ? 1 : -1;
     const priceDiffPct = (marketPrice - position.entryPrice) / position.entryPrice;
     const pnl = parseFloat((priceDiffPct * position.amount * position.leverage * direction).toFixed(2));
+
+    // Call Anchor close_position onchain
+    const { getPositionPDA } = await import("../lib/program");
+    const program = getProgram(walletProvider);
+    const owner = new PublicKey(position.walletAddress);
+    const exitPriceRaw = new anchor.BN(Math.floor(marketPrice * Math.pow(10, TOKEN_DECIMALS)));
+    const positionPda = getPositionPDA(owner, position.id);
+
+    await program.methods
+      .closePosition(exitPriceRaw)
+      .accounts({ owner, position: positionPda })
+      .rpc({ commitment: "confirmed" });
+
+    console.log("[PositionsTable] closePosition confirmed onchain");
+
+    // Sync protocol balance from chain
+    const userAcc = await program.account.userAccount.fetch(getUserAccountPDA(owner));
+    const newBalance = (userAcc as any).protocolBalance.toNumber() / Math.pow(10, TOKEN_DECIMALS);
+    setProtocolBalance(newBalance);
+
+    // Update local cache
+    const positions = JSON.parse(localStorage.getItem("positions") || "[]");
     const updated = positions.map((p: any) =>
       p.id === position.id ? { ...p, status: "closed", pnl } : p
     );
     localStorage.setItem("positions", JSON.stringify(updated));
-    // Return collateral + pnl to protocol balance
-    const stored = parseFloat(localStorage.getItem(`arcperp_protocol_${position.walletAddress}`) ?? "0");
-    const newBalance = Math.max(0, stored + position.amount + pnl);
-    localStorage.setItem(`arcperp_protocol_${position.walletAddress}`, String(newBalance));
-    setProtocolBalance(newBalance);
     addToast({ type: "success", title: "Position Closed", message: `PnL: ${pnl >= 0 ? "+" : ""}$${pnl.toFixed(2)}` });
-  } catch (err) {
+  } catch (err: any) {
     console.error(err);
-    addToast({ type: "error", title: "Failed to Close", message: "Please try again." });
+    addToast({ type: "error", title: "Failed to Close", message: err?.message || "Please try again." });
   }
 };
 
@@ -200,30 +221,49 @@ localStorage.setItem("positions", JSON.stringify(updated));
 
 function PositionRow({ position, isOwner, isLast }: { position: Position; isOwner: boolean; isLast: boolean }) {
  const isPending = false;
-  const { addToast, marketData, setProtocolBalance } = useApp();
+  const { addToast, marketData, setProtocolBalance, walletProvider } = useApp();
   const [toggling, setToggling] = useState(false);
   const isLong = position.side === "Long";
 
 const handleClose = async () => {
   if (!isOwner) return;
   try {
-    const positions = JSON.parse(localStorage.getItem("positions") || "[]");
+    const { getProgram, getUserAccountPDA } = await import("../lib/program");
+    const { PublicKey } = await import("@solana/web3.js");
+    const anchor = await import("@coral-xyz/anchor");
+    const { TOKEN_DECIMALS } = await import("../lib/constants");
+
     const marketPrice = marketData?.[position.market as keyof typeof marketData]?.price ?? position.entryPrice;
     const direction = position.side === "Long" ? 1 : -1;
     const priceDiffPct = (marketPrice - position.entryPrice) / position.entryPrice;
     const pnl = parseFloat((priceDiffPct * position.amount * position.leverage * direction).toFixed(2));
+
+    const { getPositionPDA } = await import("../lib/program");
+    const program = getProgram(walletProvider);
+    const owner = new PublicKey(position.walletAddress);
+    const exitPriceRaw = new anchor.BN(Math.floor(marketPrice * Math.pow(10, TOKEN_DECIMALS)));
+    const positionPda = getPositionPDA(owner, position.id);
+
+    await program.methods
+      .closePosition(exitPriceRaw)
+      .accounts({ owner, position: positionPda })
+      .rpc({ commitment: "confirmed" });
+
+    console.log("[PositionsTable] closePosition confirmed onchain");
+
+    const userAcc = await program.account.userAccount.fetch(getUserAccountPDA(owner));
+    const newBalance = (userAcc as any).protocolBalance.toNumber() / Math.pow(10, TOKEN_DECIMALS);
+    setProtocolBalance(newBalance);
+
+    const positions = JSON.parse(localStorage.getItem("positions") || "[]");
     const updated = positions.map((p: any) =>
       p.id === position.id ? { ...p, status: "closed", pnl } : p
     );
     localStorage.setItem("positions", JSON.stringify(updated));
-    const stored = parseFloat(localStorage.getItem(`arcperp_protocol_${position.walletAddress}`) ?? "0");
-    const newBalance = Math.max(0, stored + position.amount + pnl);
-    localStorage.setItem(`arcperp_protocol_${position.walletAddress}`, String(newBalance));
-    setProtocolBalance(newBalance);
     addToast({ type: "success", title: "Position Closed", message: `PnL: ${pnl >= 0 ? "+" : ""}$${pnl.toFixed(2)}` });
-  } catch (err) {
+  } catch (err: any) {
     console.error(err);
-    addToast({ type: "error", title: "Failed to Close", message: "Please try again." });
+    addToast({ type: "error", title: "Failed to Close", message: err?.message || "Please try again." });
   }
 };
 
