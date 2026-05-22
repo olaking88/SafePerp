@@ -92,13 +92,31 @@ export function usePythPrices(): Record<Market, MarketData> {
     [],
   );
 
+  const fetchCoinGecko = useCallback(async () => {
+    try {
+      const res = await fetch(
+        "https://api.coingecko.com/api/v3/simple/price?ids=solana,bitcoin,ethereum,jito-governance-token&vs_currencies=usd&include_24hr_change=true"
+      );
+      if (!res.ok) return false;
+      const data = await res.json();
+      const updates: Partial<Record<Market, MarketData>> = {
+        "SOL/USDC": { market: "SOL/USDC", price: data.solana?.usd ?? FALLBACK["SOL/USDC"].price, change24h: data.solana?.usd_24h_change ?? 0, volume24h: 1_240_000_000, fundingRate: 0.0012, openInterest: 450_000_000 },
+        "BTC/USDC": { market: "BTC/USDC", price: data.bitcoin?.usd ?? FALLBACK["BTC/USDC"].price, change24h: data.bitcoin?.usd_24h_change ?? 0, volume24h: 8_900_000_000, fundingRate: 0.0008, openInterest: 2_100_000_000 },
+        "ETH/USDC": { market: "ETH/USDC", price: data.ethereum?.usd ?? FALLBACK["ETH/USDC"].price, change24h: data.ethereum?.usd_24h_change ?? 0, volume24h: 3_200_000_000, fundingRate: 0.001, openInterest: 980_000_000 },
+        "JTO/USDC": { market: "JTO/USDC", price: data["jito-governance-token"]?.usd ?? FALLBACK["JTO/USDC"].price, change24h: data["jito-governance-token"]?.usd_24h_change ?? 0, volume24h: 45_000_000, fundingRate: 0.0015, openInterest: 12_000_000 },
+      };
+      applyUpdate(updates);
+      return true;
+    } catch { return false; }
+  }, [applyUpdate]);
+
   const fetchRest = useCallback(async () => {
     try {
       const qs = Object.values(FEED_IDS)
         .map((id) => `ids[]=${encodeURIComponent(id)}`)
         .join("&");
       const res = await fetch(`${HERMES}/v2/updates/price/latest?${qs}`);
-      if (!res.ok) return;
+      if (!res.ok) { await fetchCoinGecko(); return; }
       const json = await res.json();
       const updates: Partial<Record<Market, MarketData>> = {};
       for (const item of json.parsed ?? []) {
@@ -108,8 +126,9 @@ export function usePythPrices(): Record<Market, MarketData> {
         if (md) updates[market] = md;
       }
       if (Object.keys(updates).length) applyUpdate(updates);
-    } catch {}
-  }, [applyUpdate]);
+      else await fetchCoinGecko();
+    } catch { await fetchCoinGecko(); }
+  }, [applyUpdate, fetchCoinGecko]);
 
   const openSSE = useCallback(() => {
     if (sseRef.current) return;

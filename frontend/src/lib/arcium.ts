@@ -14,6 +14,7 @@
  */
 
 import * as anchor from "@coral-xyz/anchor";
+import { Buffer } from "buffer";
 import {
   getArciumEnv,
   getClusterAccAddress,

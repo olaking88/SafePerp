@@ -1,4 +1,5 @@
 import * as anchor from "@coral-xyz/anchor";
+import { Buffer } from "buffer";
 import { Connection, PublicKey, Transaction, VersionedTransaction } from "@solana/web3.js";
 import idl from "./arcium_perp.json";
 import { PROGRAM_ID, DEVNET_RPC, USER_ACCOUNT_SEED, POSITION_SEED } from "./constants";
