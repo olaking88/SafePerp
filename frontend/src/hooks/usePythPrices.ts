@@ -95,7 +95,7 @@ export function usePythPrices(): Record<Market, MarketData> {
   const fetchCoinGecko = useCallback(async () => {
     try {
       const res = await fetch(
-        "https://api.coingecko.com/api/v3/simple/price?ids=solana,bitcoin,ethereum,jito-governance-token&vs_currencies=usd&include_24hr_change=true"
+        "/coingecko/api/v3/simple/price?ids=solana,bitcoin,ethereum,jito-governance-token&vs_currencies=usd&include_24hr_change=true"
       );
       if (!res.ok) return false;
       const data = await res.json();

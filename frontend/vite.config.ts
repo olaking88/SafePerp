@@ -21,6 +21,15 @@ export default defineConfig({
       "@": path.resolve(__dirname, "src"),
     },
   },
+  server: {
+    proxy: {
+      "/coingecko": {
+        target: "https://api.coingecko.com",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/coingecko/, ""),
+      },
+    },
+  },
   build: {
     rollupOptions: {
       external: ["fs", "os"],
