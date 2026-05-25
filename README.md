@@ -89,3 +89,25 @@ Open http://localhost:5173
 ## License
 
 MIT
+
+## Known Limitations
+
+### Arcium MXE Callback Timeouts (Devnet)
+
+The `encrypt_position` circuit is fully working end-to-end on devnet — positions are successfully encrypted via Arcium MXE when opened.
+
+However, `compute_liquidation` and `compute_pnl` MXE callbacks are timing out on devnet:
+
+| Circuit | Status |
+|---|---|
+| encrypt_position | Working on devnet |
+| compute_liquidation | MXE callback timing out |
+| compute_pnl | MXE callback timing out |
+
+All three circuits are correctly implemented and deployed. The instructions reach the chain successfully but the MXE nodes are not returning callback results for the liquidation and PnL computations. We believe this is a network-level issue with Arcium devnet infrastructure rather than a circuit implementation problem.
+
+As a result, live PnL in the frontend uses a client-side formula while the encrypted on-chain PnL computation is pending MXE resolution.
+
+### Price Feed
+
+Pyth Network price feeds may be unavailable depending on network conditions. The app falls back to recent hardcoded prices when Pyth is unreachable.
