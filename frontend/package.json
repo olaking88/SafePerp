@@ -6,7 +6,8 @@
   "description": "safeperp",
   "scripts": {
     "dev": "vite",
-    "build": "vite build"
+    "build": "vite build",
+    "prebuild": "mkdir -p vite-plugin-node-polyfills/shims && cp node_modules/vite-plugin-node-polyfills/shims/buffer/dist/index.js vite-plugin-node-polyfills/shims/buffer && cp node_modules/vite-plugin-node-polyfills/shims/global/dist/index.js vite-plugin-node-polyfills/shims/global && cp node_modules/vite-plugin-node-polyfills/shims/process/dist/index.js vite-plugin-node-polyfills/shims/process"
   },
   "dependencies": {
     "@animaapp/playground-react-sdk": "0.10.0",

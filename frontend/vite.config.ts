@@ -19,15 +19,9 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "src"),
-    },
-  },
-  server: {
-    proxy: {
-      "/coingecko": {
-        target: "https://api.coingecko.com",
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/coingecko/, ""),
-      },
+      "vite-plugin-node-polyfills/shims/buffer": path.resolve(__dirname, "node_modules/vite-plugin-node-polyfills/shims/buffer/dist/index.js"),
+      "vite-plugin-node-polyfills/shims/global": path.resolve(__dirname, "node_modules/vite-plugin-node-polyfills/shims/global/dist/index.js"),
+      "vite-plugin-node-polyfills/shims/process": path.resolve(__dirname, "node_modules/vite-plugin-node-polyfills/shims/process/dist/index.js"),
     },
   },
   build: {
